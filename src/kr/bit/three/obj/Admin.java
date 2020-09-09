@@ -1,11 +1,12 @@
 package kr.bit.three.obj;
+import java.util.Iterator;
 import java.util.List;
 
 public class Admin {
 	
 	private List<Student> students;
 	private List<Professor> professors;
-	private List<Lecture> lectures;
+	private static List<Lecture> lectures;
 //	private List<Grade> grades;
 	
 	public void stdRegister() {}
@@ -26,6 +27,14 @@ public class Admin {
 	
 	public void lecLookUp() {}
 	
+	//getter
+	public static List<Lecture> getLectures() {
+		Iterator it = lectures.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
+		return lectures;
+	}
 	
 	
 }
