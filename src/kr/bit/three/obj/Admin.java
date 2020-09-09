@@ -187,8 +187,8 @@ public class Admin implements Serializable {
 	}
 
 	public static void lecLookUp() {
-		for(Map.Entry lecture : lectures.entrySet()) {
-			System.out.println(lecture.getValue());
+		for (Lecture eachLec : lectures.values()) {
+			System.out.println(eachLec.toString());
 		}
 	}
 

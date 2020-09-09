@@ -60,7 +60,22 @@ public class Lecture implements Serializable {
 		public Map<String, Student> getSignedStdList() {
 			return signedStdList;
 		}
-		
+		public String getProfName() {
+			return profName;
+		}
+
+		public int getTimes() {
+			return times;
+		}
+
+		public String getSemester() {
+			return semester;
+		}
+
+		public int getMaxStd() {
+			return maxStd;
+		}
+
 		//setter
 		public void setLecName(String lecName) {
 			this.lecName = lecName;
@@ -92,8 +107,12 @@ public class Lecture implements Serializable {
 		
 		@Override
 		public String toString() {
-			return "Lecture [lecCode=" + lecCode + ", lecName=" + lecName + ", profName=" + profName + ", semester="
-					+ semester + ", times=" + times + ", singedStdNum=" + signedStdList.size() + ", maxStd=" + maxStd + "]";
+			return "강의코드: " + getLecCode()
+				+ "\t\t강의명: " + getLecName()
+				+ "\n담당교수: " + getProfName()
+				+ "\t개설학기: " + getSemester()
+				+ "\t학점: " + getTimes()
+				+ "\t수강인원: " + getMaxStd();
 		}
 
 }
