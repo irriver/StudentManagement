@@ -11,7 +11,6 @@ public class PersonalInfo {
 	private String dept;
 	private String idNo;
 	private String phNo;
-	private List<Lecture> lectures;
 	
 	//Constructor
 	public PersonalInfo(String name, String regId, String dept, String idNo, String phNo) {
@@ -21,7 +20,6 @@ public class PersonalInfo {
 		this.dept = dept;
 		this.idNo = idNo;
 		this.phNo = phNo;
-		this.lectures = new ArrayList<Lecture>();
 	}
 	
 	//getter, setter
