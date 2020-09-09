@@ -96,7 +96,8 @@ public class Student extends PersonalInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Student [name()=" + getName() + ", regId()=" + getRegId() + ", dept()=" + getDept() + ", idNo()="
-				+ getIdNo() + ", phNo()=" + getPhNo() + "]";
+		return "학번: " + getRegId() + "\t이름: " + getName()
+		+ "\t소속학과: " + getDept() + "\t전화번호: " + getPhNo()
+		+ "-----------------------";
 	}
 }
