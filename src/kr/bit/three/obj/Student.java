@@ -11,6 +11,10 @@ public class Student extends PersonalInfo implements Serializable {
 	
 	Map<Lecture, Grade> gradeMap; 
 	
+	public boolean isExist(Student student) {
+		return (student.getRegId() != null) ? true : false; 
+	}
+	
 	//�닔媛� �떊泥�
 	public void signUpLecture() {
 		

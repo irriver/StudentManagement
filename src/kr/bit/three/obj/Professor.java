@@ -22,4 +22,8 @@ public class Professor extends PersonalInfo implements Serializable {
 	public void delGrade() {
 		
 	}
+
+	public boolean isExist(Professor professor) {
+		return (professor.getRegId() != null) ? true : false;
+	}
 }
