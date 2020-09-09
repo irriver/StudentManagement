@@ -10,8 +10,7 @@ import java.util.Scanner;
 public class Admin implements Serializable {
 
 	/**
-	 * 	Date created 2020-09-08
-	 * 	Date latest 
+	 * 	version 1.00 20-09-08
 	 * 	@author 안가람
 	 */
 	
@@ -60,6 +59,7 @@ public class Admin implements Serializable {
 			return;
 		}
 	}
+	
 	//기존 학생 정보 수정 >> 학과, 전화번호
 	public void stdModify(String regId) {
 		if (students.containsKey(regId)) {
@@ -69,8 +69,10 @@ public class Admin implements Serializable {
 
 			System.out.println("수정하실 전화번호를 입력 >> ");
 			String newPhNo = input.nextLine().trim();
-			students.get(regId).setDept(newPhNo);
-		} 
+			
+			students.get(regId).setDept(newDept);
+			students.get(regId).setPhNo(newPhNo);
+		}
 	}
 
 	//학생 전체 목록 조회
@@ -111,11 +113,28 @@ public class Admin implements Serializable {
 			return;
 		}
 	}
+	
+	//교수 정보 수정 >> 학과, 전화번호
+	public void profModify(String regId) {
+		if (professors.containsKey(regId)) {
 
-	public void profModify() {
+			System.out.println("수정하실 학과명을 입력 >> ");
+			String newDept = input.nextLine().trim();
+
+			System.out.println("수정하실 전화번호를 입력 >> ");
+			String newPhNo = input.nextLine().trim();
+
+			students.get(regId).setDept(newDept);
+			students.get(regId).setPhNo(newPhNo);
+		}
+
 	}
 
+	//교수 전체 목록 출력
 	public void profLookUp() {
+		for (Professor eachProf : professors.values()) {
+			System.out.println(eachProf.toString());
+		}
 	}
 
 	// ---------------------------- 강의 관련 업무 ------------------------------

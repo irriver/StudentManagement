@@ -131,4 +131,14 @@ public class Professor extends PersonalInfo implements Serializable {
 	private void delStdGrade(Lecture lecture, Student student) {
 		student.getGradeMap().remove(lecture.getLecName());
 	}
+
+	@Override
+	public String toString() {
+		return "교번: " + getRegId() + "\t성명: " + getName()
+		+ "\n주민번호: " + getIdNo()
+		+ "\n소속학과: " + getDept() + "\t전화번호: " + getPhNo()
+		+ "-----------------------";
+	}
+	
+	
 }
