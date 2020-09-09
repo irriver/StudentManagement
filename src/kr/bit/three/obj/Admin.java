@@ -60,22 +60,22 @@ public class Admin implements Serializable {
 			return;
 		}
 	}
-	//기존 학생 정보 수정
-	public void stdModify(String stdRegId, Student student) {
-		//해당 학생 불러오기: 리스트의 특정 학생 불러오기 -> 키 값이 필요 
-		if (students.get(stdRegId) != null) {
-			Scanner input = new Scanner(System.in);
+	//기존 학생 정보 수정 >> 학과, 전화번호
+	public void stdModify(String regId) {
+		if (students.containsKey(regId)) {
+			
+			System.out.println("수정하실 학과명을 입력 >> ");
 			String newDept = input.nextLine().trim();
-			//새로운 학생 객체 생성 없이 어떻게 데이터를 수정? 
-			//Student
-			students.put(stdRegId, student.setDept(newDept));
+
+			System.out.println("수정하실 전화번호를 입력 >> ");
+			String newPhNo = input.nextLine().trim();
+			students.get(regId).setDept(newPhNo);
 		} 
-		//수정할 데이터 넘기기
-		
-		//수정내역 콘솔에 출력해서 확인할 수 있게 하기
 	}
 
-	public void stdLookUp() {
+	//학생 전체 목록 조회
+	public  void stdLookUp() {
+		
 	}
 
 //---------------------------- 교수 관련 업무 ------------------------------
