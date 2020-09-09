@@ -1,7 +1,6 @@
 package kr.bit.three.obj;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PersonalInfo {
@@ -12,19 +11,6 @@ public class PersonalInfo {
 	private String idNo;
 	private String phNo;
 	private List<Lecture> lectures;
-	
-	//Constructor
-	public PersonalInfo(String name, String regId, String dept, String idNo, String phNo) {
-		super();
-		this.name = name;
-		this.regId = regId;
-		this.dept = dept;
-		this.idNo = idNo;
-		this.phNo = phNo;
-		this.lectures = new ArrayList<Lecture>();
-	}
-	
-	//getter, setter
 	public String getName() {
 		return name;
 	}
@@ -61,7 +47,6 @@ public class PersonalInfo {
 	public void setLectures(List<Lecture> lectures) {
 		this.lectures = lectures;
 	}
-	
 	@Override
 	public String toString() {
 		return "PersonalInfo [name=" + name + ", regId=" + regId + ", dept=" + dept + ", idNo=" + idNo + ", phNo="

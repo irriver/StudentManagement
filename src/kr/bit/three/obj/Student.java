@@ -11,17 +11,17 @@ public class Student extends PersonalInfo implements Serializable {
 	
 	Map<Lecture, Grade> gradeMap; 
 	
-	//수강 신청
+	//�닔媛� �떊泥�
 	public void signUpLecture() {
 		
 	}
 	
-	//수강 취소
+	//�닔媛� 痍⑥냼
 	public void dropLecture() {
 		
 	}
 	
-	//성적 확인
+	//�꽦�쟻 �솗�씤
 	public void checkGrade() {
 		
 		
