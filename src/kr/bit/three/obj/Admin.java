@@ -32,8 +32,6 @@ public class Admin implements Serializable {
 //---------------------------- 학생 관련 업무 ------------------------------
 
 	public void stdRegister() {
-		students = new HashMap<String, Student>();
-
 		System.out.println("등록할 학생의 이름 입력 >> ");
 		String name = input.nextLine().trim();
 		
@@ -85,8 +83,6 @@ public class Admin implements Serializable {
 //---------------------------- 교수 관련 업무 ------------------------------
 
 	public void profRegister() {
-		professors = new HashMap<String, Professor>();
-
 		System.out.println("등록할 교수의 이름 입력 >> ");
 		String name = input.nextLine().trim();
 		
@@ -96,7 +92,7 @@ public class Admin implements Serializable {
 		System.out.println("등록할 교수의 학과 입력 >> ");
 		String dept = input.nextLine().trim();
 		
-		System.out.println("등록할 교수의 주민 번호 입력 >> ");	// 정규표현식으로 검증
+		System.out.println("등록할 교수의 주민 번호 입력 >> ");
 		String idNo = input.nextLine().trim();
 
 		System.out.println("등록할 학생의 전화번호 입력 >> ");
@@ -127,7 +123,6 @@ public class Admin implements Serializable {
 			students.get(regId).setDept(newDept);
 			students.get(regId).setPhNo(newPhNo);
 		}
-
 	}
 
 	//교수 전체 목록 출력
@@ -139,12 +134,56 @@ public class Admin implements Serializable {
 
 	// ---------------------------- 강의 관련 업무 ------------------------------
 
-	public void lecRegister(Lecture lecture) {
+	public void lecRegister() {
+		
 		//강의는 동일 강좌가 개설될 수 있으므로 중복 체크 하지 않음
-		lectures.add(lecture);
+		System.out.println("등록할 강의의 등록 코드 입력 >> ");
+		String lecCode = input.nextLine().trim();
+		
+		System.out.println("등록할 강의명 입력 >> ");
+		String lecName = input.nextLine().trim();
+		
+		System.out.println("등록할 강의의 담당 교수 입력 >> ");
+		String profName = input.nextLine().trim();
+		
+		System.out.println("등록할 강의의 개설 학기 입력 >> ");
+		String semester = input.nextLine().trim();
+
+		System.out.println("등록할 강의의 학점  입력 >> ");
+		int times = input.nextInt();
+		
+		System.out.println("등록할 강의의 수강 인원 입력 >> ");
+		int maxStd = input.nextInt();
+		
+		Lecture newLec = new Lecture(lecCode, lecName, profName, semester, times, maxStd);
+		lectures.put(lecCode, newLec);
 	}
 
-	public void lecModify() {
+	// 일부 데이터만 수정할 경우 추가할 것***
+	public void lecModify(String lecCode) {
+		if (lectures.containsKey(lecCode)) {
+			
+			System.out.println("수정할 강의명 입력 >> ");
+			String lecName = input.nextLine().trim();
+			
+			System.out.println("수정할 강의의 담당 교수 입력 >> ");
+			String profName = input.nextLine().trim();
+			
+			System.out.println("수정할 강의의 개설 학기 입력 >> ");
+			String semester = input.nextLine().trim();
+
+			System.out.println("수정할 강의의 학점  입력 >> ");
+			int times = input.nextInt();
+			
+			System.out.println("수정할 강의의 수강 인원 입력 >> ");
+			int maxStd = input.nextInt();
+			
+			lectures.get(lecCode).setLecName(lecName);
+			lectures.get(lecCode).setProfName(profName);
+			lectures.get(lecCode).setSemester(semester);
+			lectures.get(lecCode).setTimes(times);
+			lectures.get(lecCode).setMaxStd(maxStd);
+		}
 	}
 
 	public static void lecLookUp() {
