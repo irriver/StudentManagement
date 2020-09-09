@@ -26,10 +26,6 @@ public class Student extends PersonalInfo implements Serializable {
 		scanner = new Scanner(System.in);
 	}
 
-	public boolean isExist(Student student) {
-		return (student.getRegId() != null) ? true : false;
-	}
-
 	// 수강 신청
 	public void signUpLecture(Student student) {
 		// 강의 목록 출력
