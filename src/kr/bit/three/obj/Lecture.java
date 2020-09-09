@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Lecture implements Serializable {
-	
+	//Test
 	private String lecCode;
 	private String lecName;
 	private String profName;
