@@ -1,13 +1,21 @@
 package kr.bit.three.obj;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class Admin {
 	
-	private List<Student> students;
-	private List<Professor> professors;
-	private static List<Lecture> lectures;
+	private Map<String, Student> students;
+	private Map<String, Professor> professors;
+	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
+	
+	Admin() {
+		students = new HashMap<String, Student>();
+		professors = new HashMap<String, Professor>();
+		lectures = new HashMap<String, Lecture>();
+	}
 	
 	public void stdRegister() {}
 	
@@ -15,9 +23,7 @@ public class Admin {
 	
 	public void stdLookUp() {}
 	
-	public void profRegister() {
-		//회원가입에서 객체를 생성해주지 않을까?
-	}
+	public void profRegister() {}
 		
 	
 	public void profModify() {}
@@ -30,17 +36,18 @@ public class Admin {
 	public void lecModify() {}
 	
 	public static void lecLookUp() {
-		Iterator it = lectures.iterator();
-		while(it.hasNext()) {
-			System.out.println(it.next());
+		for(Map.Entry lecture : lectures.entrySet()) {
+			System.out.println(lecture.getValue());
 		}
 	}
-	
+
 	//getter
-	public static List<Lecture> getLectures() {
+	public static Map<String, Lecture> getLectures() {
 		return lectures;
 	}
 
+	
+	
 	
 	
 }

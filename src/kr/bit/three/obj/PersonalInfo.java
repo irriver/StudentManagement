@@ -53,16 +53,10 @@ public class PersonalInfo {
 	public void setPhNo(String phNo) {
 		this.phNo = phNo;
 	}
-	public List<Lecture> getLectures() {
-		return lectures;
-	}
-	public void setLectures(List<Lecture> lectures) {
-		this.lectures = lectures;
-	}
 	
 	@Override
 	public String toString() {
 		return "PersonalInfo [name=" + name + ", regId=" + regId + ", dept=" + dept + ", idNo=" + idNo + ", phNo="
-				+ phNo + ", lectures=" + lectures + "]";
+				+ phNo + "]";
 	}
 }

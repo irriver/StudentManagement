@@ -1,19 +1,19 @@
 package kr.bit.three.obj;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Professor extends PersonalInfo implements Serializable {
 	private Scanner scanner;
-	private List<Lecture> myLectures;
+	private Map<String, Lecture> myLectures;
 	
 	public Professor(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
 		
 		scanner = new Scanner(System.in);
-		myLectures = new ArrayList<Lecture>();
+		myLectures = new HashMap<String, Lecture>();
 	}
 
 	/**
@@ -70,21 +70,20 @@ public class Professor extends PersonalInfo implements Serializable {
 	//1.myLectures 조회
 	//강의 수가 많을 경우 조회하지 않고 바로 코드 입력하는 곳으로 이동할 수 있는 것도 만들어야??
 	private void showMyLectures() {
-		Iterator it = myLectures.iterator();
-		while(it.hasNext()) {
-			System.out.println(it.next());
+		for(Map.Entry lec : myLectures.entrySet()) {
+			System.out.println(lec.getValue());
 		}
 	}
 	
 	//2.myLecture 선택
 	private Lecture selectMyLecture() {
 		System.out.print("성적 입력을 원하는 강의 코드를 입력하세요: ");
-		String userInput = scanner.nextLine();
+		String input = scanner.nextLine();
 		
 		//일치하는 코드 있을 시 return the lecture;
-		for(Lecture lecture : myLectures) {
-			if(lecture.getLecCode().equals(userInput)) {
-				return lecture;
+		for(Map.Entry lec : myLectures.entrySet()) {
+			if(lec.getKey().equals(input)) {
+				return (Lecture)lec;
 			}
 		}
 		
@@ -95,9 +94,8 @@ public class Professor extends PersonalInfo implements Serializable {
 	
 	//3.myLecture가 가지고 있는 stdList 출력
 	private void getStdList(Lecture lecture) {
-		Iterator it = lecture.getSignedStdList().iterator();
-		while(it.hasNext()) {
-			System.out.println(it.next());
+		for(Map.Entry lec : lecture.getSignedStdList().entrySet()) {
+			System.out.println(lec.getValue());
 		}
 	}
 	
@@ -107,9 +105,9 @@ public class Professor extends PersonalInfo implements Serializable {
 		String input = scanner.nextLine();
 		
 		//일치하는 학번 있을 시 return the student
-		for(Student student : lecture.getSignedStdList()) {
-			if(student.getRegId().equals(input)) {
-				return student;
+		for(Map.Entry lec : lecture.getSignedStdList().entrySet()) {
+			if(lec.getKey().equals(input)) {
+				return (Student)lec.getValue();
 			}
 		}
 		

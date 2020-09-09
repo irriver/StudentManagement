@@ -10,17 +10,13 @@ import java.util.Scanner;
 public class Student extends PersonalInfo implements Serializable {
 	private Scanner scanner;
 	
-	private List<Lecture> myLectures;
-//	public Map<String, Lecture> myLectures = new HashMap<String, Lecture>();
-
-	
+	private Map<String, Lecture> myLectures;
 	private Map<String, Integer> gradeMap;
 	
 	public Student(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
-		this.myLectures = new ArrayList<Lecture>();
+		this.myLectures = new HashMap<String, Lecture>();
 		this.gradeMap = new HashMap<String, Integer>();
-		
 		
 		scanner = new Scanner(System.in);
 	}
@@ -45,12 +41,12 @@ public class Student extends PersonalInfo implements Serializable {
 		String input = scanner.nextLine();
 		
 		//lecture목록에서 사용자가 입력한 lecCode와 일치하는 lecture가 있는지 for문 실행
-		
-		
-		for(Lecture lecture : Admin.getLectures()) {
-			if(lecture.getLecCode().equals(input)) { //일치하는 lecCode가 있을 시 아래 실행
-				myLectures.add(lecture); 			   //내 강의목록에 신청한 강의 추가
-				lecture.addStd(student);			   //신청한 강의에 학생 추가
+		for(Map.Entry lec : Admin.getLectures().entrySet()) {
+			if(lec.getKey().equals(input)) { //일치하는 lecCode가 있을 시 아래 실행
+				myLectures.put((String)lec.getKey(), (Lecture)lec.getValue());	   //내 강의목록에 신청한 강의 추가
+
+				Lecture signedStdList = (Lecture)lec.getValue();
+				signedStdList.getSignedStdList().put(student.getRegId(), student); //신청한 강의에 학생 추가
 				break;
 			}
 		}
@@ -69,10 +65,12 @@ public class Student extends PersonalInfo implements Serializable {
 		String input = scanner.nextLine();
 		
 		//mylectures목록에서 사용자가 입력한 lecCode와 일치하는 lecture가 있는지 for문 실행
-		for(Lecture lecture : myLectures) {
-			if(lecture.getLecCode().equals(input)) { //일치하는 lecCode가 있을 시 아래 실행
-				myLectures.remove(lecture); 		   //내 강의목록에 신청한 강의 삭제
-				lecture.subStd(student);			   //신청한 강의에서 학생 삭제
+		for(Map.Entry lec : Admin.getLectures().entrySet()) {
+			if(lec.getKey().equals(input)) { //일치하는 lecCode가 있을 시 아래 실행
+				myLectures.remove((String)lec.getKey());	   //내 강의목록에 신청한 강의 삭제
+				
+				Lecture signedStdList = (Lecture)lec.getValue();
+				signedStdList.getSignedStdList().remove(student.getRegId()); //신청한 강의에서 학생 삭제
 				break;
 			}
 		}
@@ -84,14 +82,13 @@ public class Student extends PersonalInfo implements Serializable {
 	//성적 확인
 	public void checkGrade() {
 		
-		
 	}
+	
 	
 	//myLectures 조회
 	private void showMyLectures() {
-		Iterator it = myLectures.iterator();
-		while(it.hasNext()) {
-			System.out.println(it.next());
+		for(Map.Entry lec : myLectures.entrySet()) {
+			System.out.println(lec.getValue());
 		}
 	}
 	
