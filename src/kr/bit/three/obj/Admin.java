@@ -75,16 +75,37 @@ public class Admin implements Serializable {
 
 	//학생 전체 목록 조회
 	public  void stdLookUp() {
-		
+		for (Student eachStd : students.values()) {
+			System.out.println(eachStd.toString());
+		}
 	}
 
 //---------------------------- 교수 관련 업무 ------------------------------
 
-	public void profRegister(Professor professor) {
-		professors = new ArrayList<Professor>();
-		// 등록할 교수의 교번이 이미 있는지 확인
-		if (professor.isExist(professor)) {
-			professors.add(professor);
+	public void profRegister() {
+		professors = new HashMap<String, Professor>();
+
+		System.out.println("등록할 교수의 이름 입력 >> ");
+		String name = input.nextLine().trim();
+		
+		System.out.println("등록할 교수의 교번 입력 >> ");
+		String regId = input.nextLine().trim();
+		
+		System.out.println("등록할 교수의 학과 입력 >> ");
+		String dept = input.nextLine().trim();
+		
+		System.out.println("등록할 교수의 주민 번호 입력 >> ");	// 정규표현식으로 검증
+		String idNo = input.nextLine().trim();
+
+		System.out.println("등록할 학생의 전화번호 입력 >> ");
+		String phNo = input.nextLine().trim();
+		
+		Professor newProf = new Professor(name, regId, dept, idNo, phNo);
+		
+		professors = new HashMap<String, Professor>();
+		
+		if (professors.containsKey(regId)) {
+			professors.put(regId, newProf);
 		} else {
 			System.out.println("이미 등록된 교수입니다.");
 			return;
