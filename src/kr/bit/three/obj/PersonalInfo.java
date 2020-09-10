@@ -1,5 +1,11 @@
 package kr.bit.three.obj;
 
+<<<<<<< HEAD
+=======
+
+import java.util.List;
+
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 public class PersonalInfo {
 	
 	private String name;
@@ -7,6 +13,7 @@ public class PersonalInfo {
 	private String dept;
 	private String idNo;
 	private String phNo;
+<<<<<<< HEAD
 	
 	//Constructor
 	public PersonalInfo(String name, String regId, String dept, String idNo, String phNo) {
@@ -17,7 +24,14 @@ public class PersonalInfo {
 		this.idNo = idNo;
 		this.phNo = phNo;
 	}
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
+=======
+	private List<Lecture> lectures;
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	public String getName() {
 		return name;
 	}
@@ -48,7 +62,16 @@ public class PersonalInfo {
 	public void setPhNo(String phNo) {
 		this.phNo = phNo;
 	}
+<<<<<<< HEAD
 	
+=======
+	public List<Lecture> getLectures() {
+		return lectures;
+	}
+	public void setLectures(List<Lecture> lectures) {
+		this.lectures = lectures;
+	}
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	@Override
 	public String toString() {
 		return "PersonalInfo [name=" + name + ", regId=" + regId + ", dept=" + dept + ", idNo=" + idNo + ", phNo="
