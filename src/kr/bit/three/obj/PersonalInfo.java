@@ -1,9 +1,5 @@
 package kr.bit.three.obj;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class PersonalInfo {
 	
 	private String name;
@@ -21,8 +17,7 @@ public class PersonalInfo {
 		this.idNo = idNo;
 		this.phNo = phNo;
 	}
-	
-	//getter, setter
+
 	public String getName() {
 		return name;
 	}

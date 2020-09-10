@@ -1,13 +1,14 @@
 package kr.bit.three.obj;
+
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Professor extends PersonalInfo implements Serializable {
 	private Scanner scanner;
 	private Map<String, Lecture> myLectures;
+	private static final long serialVersionUID = 1L;
 	
 	public Professor(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
@@ -16,36 +17,32 @@ public class Professor extends PersonalInfo implements Serializable {
 		myLectures = new HashMap<String, Lecture>();
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	//성적 입력
+	// 성적 입력
 	public void writeGrade() {
-		showMyLectures();			         //1.myLectures 조회
-		Lecture lecture = selectMyLecture(); //2.myLecture 선택
-		getStdList(lecture);  				 //3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);//4.stdList에서 성적 수을 원하는 std 선택
-		
-		//5-1.std 성적 입력
+		showMyLectures(); // 1.myLectures 조회
+		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
+		getStdList(lecture); // 3.myLecture가 가지고 있는 stdList 출력
+		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
+
+		// 5-1.std 성적 입력
 		int score = Integer.parseInt(scanner.nextLine());
 		writeStdGrade(lecture, student, score);
 	}
 
-	//성적 수정
+	// 성적 수정
 	public void modifyGrade() {
-		showMyLectures();			         //1.myLectures 조회
-		Lecture lecture = selectMyLecture(); //2.myLecture 선택
-		getStdList(lecture);  				 //3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);//4.stdList에서 성적 수을 원하는 std 선택
-		
-		//5-2.std 성적 수정
+
+		showMyLectures(); // 1.myLectures 조회
+		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
+		getStdList(lecture); // 3.myLecture가 가지고 있는 stdList 출력
+		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
+
+		// 5-2.std 성적 수정
 		int score = Integer.parseInt(scanner.nextLine());
 		modifyStdGrade(lecture, student, score);
 	}
-	
-	//성적 삭제
+
+	// 성적 삭제
 	public void delGrade() {
 		showMyLectures();			         //1.myLectures 조회
 		Lecture lecture = selectMyLecture(); //2.myLecture 선택
@@ -131,5 +128,12 @@ public class Professor extends PersonalInfo implements Serializable {
 	private void delStdGrade(Lecture lecture, Student student) {
 		student.getGradeMap().remove(lecture.getLecName());
 	}
-	
+
+	@Override
+	public String toString() {
+		return "교번: " + getRegId() + "\t성명: " + getName()
+		+ "\n주민번호: " + getIdNo()
+		+ "\n소속학과: " + getDept() + "\t전화번호: " + getPhNo()
+		+ "-----------------------";
+	}	
 }
