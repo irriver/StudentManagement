@@ -17,7 +17,11 @@ public class PersonalInfo {
 		this.idNo = idNo;
 		this.phNo = phNo;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	public String getName() {
 		return name;
 	}
