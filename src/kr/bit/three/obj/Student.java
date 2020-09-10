@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Student extends PersonalInfo implements Serializable {
+<<<<<<< HEAD
 
 	/**
 	 * Created-Date 20-09-09
@@ -26,6 +27,23 @@ public class Student extends PersonalInfo implements Serializable {
 		scanner = new Scanner(System.in);
 	}
 
+=======
+	private Scanner scanner;
+	
+	private Map<String, Lecture> myLectures;
+	private Map<String, Integer> myGrades;
+	
+	public Student(String name, String regId, String dept, String idNo, String phNo) {
+		super(name, regId, dept, idNo, phNo);
+		this.myLectures = new HashMap<String, Lecture>();
+		this.myGrades = new HashMap<String, Integer>();
+		
+		scanner = new Scanner(System.in);
+	}
+
+	private static final long serialVersionUID = 1L;
+	
+>>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	// 수강 신청
 	public void signUpLecture(Student student) {
 		// 강의 목록 출력
@@ -91,7 +109,11 @@ public class Student extends PersonalInfo implements Serializable {
 
 	// getter, setter
 	public Map<String, Integer> getGradeMap() {
+<<<<<<< HEAD
 		return gradeMap;
+=======
+		return myGrades;
+>>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	}
 
 	@Override
@@ -101,4 +123,10 @@ public class Student extends PersonalInfo implements Serializable {
 		+ "\n소속학과: " + getDept() + "\t전화번호: " + getPhNo()
 		+ "-----------------------";
 	}
+	
+	
+	
+	
+	
+	
 }
