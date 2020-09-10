@@ -8,7 +8,6 @@ public class PersonalInfo {
 	private String idNo;
 	private String phNo;
 	
-	//Constructor
 	public PersonalInfo(String name, String regId, String dept, String idNo, String phNo) {
 		super();
 		this.name = name;
@@ -17,11 +16,7 @@ public class PersonalInfo {
 		this.idNo = idNo;
 		this.phNo = phNo;
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	public String getName() {
 		return name;
 	}
@@ -52,7 +47,7 @@ public class PersonalInfo {
 	public void setPhNo(String phNo) {
 		this.phNo = phNo;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PersonalInfo [name=" + name + ", regId=" + regId + ", dept=" + dept + ", idNo=" + idNo + ", phNo="
