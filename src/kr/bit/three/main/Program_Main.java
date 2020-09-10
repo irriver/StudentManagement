@@ -8,5 +8,4 @@ public class Program_Main {
 		MainController main = new MainController();
 		main.mainMethod();
 	}
-
 }
