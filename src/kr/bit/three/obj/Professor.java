@@ -114,8 +114,8 @@ public class Professor extends PersonalInfo implements Serializable {
 	// myLectures 조회
 	// 강의 수가 많을 경우 조회하지 않고 바로 코드 입력하는 곳으로 이동할 수 있는 것도 만들어야??
 	public void showMyLectures() {
-		for (Map.Entry lec : myLectures.entrySet()) {
-			System.out.println(lec.getValue());
+		for (Lecture lec : myLectures.values()) {
+			System.out.println(lec.toString());
 		}
 	}
 	
