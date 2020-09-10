@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Lecture implements Serializable {
+<<<<<<< HEAD
 
 	private String lecCode;
 <<<<<<< HEAD
@@ -16,6 +17,14 @@ public class Lecture implements Serializable {
 >>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	private String semester;
 	private int times;
+=======
+	
+	private String lecName;
+	private String lecCode;
+	private String prof;
+	private int times;
+	private String semester;
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	private int maxStd;
 	private Map<String, Student> signedStdList;
 
@@ -32,6 +41,7 @@ public class Lecture implements Serializable {
 		this.signedStdList = new HashMap<String, Student>();
 	}
 	
+<<<<<<< HEAD
 	//수강인원 추가(학생명단에 신청학생 추가)
 		public void addStd(Student student) {
 			if(signedStdList.size() < maxStd) {
@@ -220,4 +230,7 @@ public class Lecture implements Serializable {
 		+ "\t수강인원: " + getMaxStd();
 	}
 >>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
+=======
+	
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 }

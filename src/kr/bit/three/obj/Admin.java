@@ -1,13 +1,17 @@
 package kr.bit.three.obj;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+=======
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+<<<<<<< HEAD
 =======
 
 import java.io.Serializable;
@@ -22,6 +26,24 @@ public class Admin implements Serializable {
 	 * 	version 1.00 20-09-08
 	 * 	@author 안가람
 	 */
+=======
+public class Admin {
+	
+	private List<Student> students;
+	private List<Professor> professors;
+	private List<Lecture> lectures;
+//	private List<Grade> grades;
+	
+	public void stdRegister() {}
+	
+	public void stdModify() {}
+	
+	public void stdLookUp() {}
+	
+	public void profRegister() {}
+	
+	public void profModify() {}
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -127,6 +149,7 @@ public class Admin implements Serializable {
 		}
 	}
 	
+<<<<<<< HEAD
 	//교수 정보 수정 >> 학과, 전화번호
 	public void profModify(String regId) {
 		if (professors.containsKey(regId)) {
@@ -212,4 +235,8 @@ public class Admin implements Serializable {
 	public static Map<String, Lecture> getLectures() {
 		return lectures;
 	}
+=======
+	
+	
+>>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 }
