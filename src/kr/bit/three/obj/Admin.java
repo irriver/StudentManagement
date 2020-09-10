@@ -10,7 +10,6 @@ public class Admin {
 	private Map<String, Student> students;
 	private Map<String, Professor> professors;
 	private static Map<String, Lecture> lectures;
-//	private List<Grade> grades;
 	
 	Admin() {
 		students = new HashMap<String, Student>();
