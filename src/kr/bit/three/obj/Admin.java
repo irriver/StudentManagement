@@ -48,7 +48,7 @@ public class Admin implements Serializable {
 		Student newStd = new Student(name, regId, dept, idNo, phNo);
 		
 		// 등록할 학생의 학번이 이미 있는지 확인 >> Map에서 키가 있는지 조회
-		if (students.containsKey(regId)) {
+		if (!students.containsKey(regId)) {
 			students.put(regId, newStd);
 		} else {
 			System.out.println("이미 등록된 학생입니다.");
