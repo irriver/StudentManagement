@@ -96,10 +96,4 @@ public class Student extends PersonalInfo implements Serializable {
 		+ "\n소속학과: " + getDept() + "\t전화번호: " + getPhNo()
 		+ "-----------------------";
 	}
-	
-	
-	
-	
-	
-	
 }
