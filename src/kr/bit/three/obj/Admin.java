@@ -1,49 +1,16 @@
 package kr.bit.three.obj;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-=======
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-
-<<<<<<< HEAD
-=======
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 public class Admin implements Serializable {
 
 	/**
 	 * 	version 1.00 20-09-08
 	 * 	@author 안가람
 	 */
-=======
-public class Admin {
-	
-	private List<Student> students;
-	private List<Professor> professors;
-	private List<Lecture> lectures;
-//	private List<Grade> grades;
-	
-	public void stdRegister() {}
-	
-	public void stdModify() {}
-	
-	public void stdLookUp() {}
-	
-	public void profRegister() {}
-	
-	public void profModify() {}
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -81,11 +48,7 @@ public class Admin {
 		Student newStd = new Student(name, regId, dept, idNo, phNo);
 		
 		// 등록할 학생의 학번이 이미 있는지 확인 >> Map에서 키가 있는지 조회
-<<<<<<< HEAD
 		if (students.containsKey(regId)) {
-=======
-		if (!students.containsKey(regId)) {
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 			students.put(regId, newStd);
 		} else {
 			System.out.println("이미 등록된 학생입니다.");
@@ -137,11 +100,7 @@ public class Admin {
 		
 		professors = new HashMap<String, Professor>();
 		
-<<<<<<< HEAD
 		if (professors.containsKey(regId)) {
-=======
-		if (!professors.containsKey(regId)) {
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 			professors.put(regId, newProf);
 		} else {
 			System.out.println("이미 등록된 교수입니다.");
@@ -149,7 +108,6 @@ public class Admin {
 		}
 	}
 	
-<<<<<<< HEAD
 	//교수 정보 수정 >> 학과, 전화번호
 	public void profModify(String regId) {
 		if (professors.containsKey(regId)) {
@@ -235,8 +193,4 @@ public class Admin {
 	public static Map<String, Lecture> getLectures() {
 		return lectures;
 	}
-=======
-	
-	
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 }

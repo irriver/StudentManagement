@@ -6,58 +6,17 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Student extends PersonalInfo implements Serializable {
-<<<<<<< HEAD
-
-	/**
-	 * Created-Date 20-09-09
-	 * 
-	 * @author 전선규
-	 */
-	private static final long serialVersionUID = 1L;
-	
-<<<<<<< HEAD
-	private Scanner scanner;
-	private Map<String, Integer> gradeMap;
-	private Map<String, Lecture> myLectures;
-
-	public Student(String name, String regId, String dept, String idNo, String phNo) {
-		super(name, regId, dept, idNo, phNo);
-		this.myLectures = new HashMap<String, Lecture>();
-		this.gradeMap = new HashMap<String, Integer>();
-
-		scanner = new Scanner(System.in);
-=======
-	Map<Lecture, Grade> gradeMap; 
-	
-	//�닔媛� �떊泥�
-	public void signUpLecture() {
-		
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
-	}
-
-=======
 	private Scanner scanner;
 	
 	private Map<String, Lecture> myLectures;
 	private Map<String, Integer> myGrades;
 	
-<<<<<<< HEAD
 	public Student(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
 		this.myLectures = new HashMap<String, Lecture>();
 		this.myGrades = new HashMap<String, Integer>();
-=======
-	//�닔媛� 痍⑥냼
-	public void dropLecture() {
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
-		
-		scanner = new Scanner(System.in);
 	}
-
-	private static final long serialVersionUID = 1L;
 	
-<<<<<<< HEAD
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	// 수강 신청
 	public void signUpLecture(Student student) {
 		// 강의 목록 출력
@@ -110,9 +69,6 @@ public class Student extends PersonalInfo implements Serializable {
 	}
 
 	// 성적 확인
-=======
-	//�꽦�쟻 �솗�씤
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	public void checkGrade() {
 
 	}
@@ -126,11 +82,7 @@ public class Student extends PersonalInfo implements Serializable {
 
 	// getter, setter
 	public Map<String, Integer> getGradeMap() {
-<<<<<<< HEAD
-		return gradeMap;
-=======
 		return myGrades;
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	}
 
 	@Override

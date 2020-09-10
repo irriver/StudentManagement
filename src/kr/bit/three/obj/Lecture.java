@@ -5,26 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Lecture implements Serializable {
-<<<<<<< HEAD
-
 	private String lecCode;
-<<<<<<< HEAD
-	private String profName;
-	private int times;
-=======
 	private String lecName;
 	private String profName;
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	private String semester;
 	private int times;
-=======
-	
-	private String lecName;
-	private String lecCode;
-	private String prof;
-	private int times;
-	private String semester;
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	private int maxStd;
 	private Map<String, Student> signedStdList;
 
@@ -36,104 +21,7 @@ public class Lecture implements Serializable {
 		this.semester = semester;
 		this.times = times;
 		this.maxStd = maxStd;
-<<<<<<< HEAD
 		
-		this.signedStdList = new HashMap<String, Student>();
-	}
-	
-<<<<<<< HEAD
-	//수강인원 추가(학생명단에 신청학생 추가)
-		public void addStd(Student student) {
-			if(signedStdList.size() < maxStd) {
-				signedStdList.put(student.getRegId(), student);
-			} else {
-				System.out.println("수강인원을 초과했습니다. 다른 강의를 신청해주세요.");
-			}
-		}
-		
-		//수강인원 삭제(학생명단에서 학생 삭제)
-		public void subStd(Student student) {
-			if(!signedStdList.isEmpty() && signedStdList.containsKey(student.getRegId())) {
-				signedStdList.remove(student.getRegId());
-			} else {
-				System.out.println("수강학생 목록에 없습니다.");
-			}
-		}
-		
-		//해당 강의를 수강신청한 학생 목록 출력
-		public void showSignedStdList() {
-			for(Map.Entry student : signedStdList.entrySet()) {
-				System.out.println(student.getValue());
-			}
-		}
-		
-		//getter
-		public String getLecCode() {
-			return lecCode;
-		}
-		public String getLecName() {
-			return lecName;
-		}
-		public Map<String, Student> getSignedStdList() {
-			return signedStdList;
-		}
-		public String getProfName() {
-			return profName;
-		}
-
-		public int getTimes() {
-			return times;
-		}
-
-		public String getSemester() {
-			return semester;
-		}
-
-		public int getMaxStd() {
-			return maxStd;
-		}
-
-		//setter
-		public void setLecName(String lecName) {
-			this.lecName = lecName;
-		}
-
-		public void setLecCode(String lecCode) {
-			this.lecCode = lecCode;
-		}
-
-		public void setProfName(String profName) {
-			this.profName = profName;
-		}
-
-		public void setTimes(int times) {
-			this.times = times;
-		}
-
-		public void setSemester(String semester) {
-			this.semester = semester;
-		}
-
-		public void setMaxStd(int maxStd) {
-			this.maxStd = maxStd;
-		}
-
-		public void setSignedStdList(Map<String, Student> signedStdList) {
-			this.signedStdList = signedStdList;
-		}
-		
-		@Override
-		public String toString() {
-			return "강의코드: " + getLecCode()
-				+ "\t\t강의명: " + getLecName()
-				+ "\n담당교수: " + getProfName()
-				+ "\t개설학기: " + getSemester()
-				+ "\t학점: " + getTimes()
-				+ "\t수강인원: " + getMaxStd();
-		}
-
-=======
-
 		this.signedStdList = new HashMap<String, Student>();
 	}
 
@@ -229,8 +117,4 @@ public class Lecture implements Serializable {
 		+ "\t학점: " + getTimes() 
 		+ "\t수강인원: " + getMaxStd();
 	}
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
-=======
-	
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 }
