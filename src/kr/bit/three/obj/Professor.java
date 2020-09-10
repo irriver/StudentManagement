@@ -18,56 +18,45 @@ public class Professor extends PersonalInfo implements Serializable {
 
 	// 성적 입력
 	public void writeGrade() {
-		showMyLectures(); 					 // 1.myLectures 조회
-		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
-		getStdList(lecture); 				 // 3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
+		Lecture lecture = selectMyLecture(); // 1.myLecture 선택
+		getStdList(lecture); 				 // 2.myLecture가 가지고 있는 stdList 출력
+		Student student = selectStd(lecture);// 3.stdList에서 성적 수을 원하는 std 선택
 
-		// 5-1.std 성적 입력
+		// 4-1.std 성적 입력
 		int score = Integer.parseInt(scanner.nextLine());
 		writeStdGrade(lecture, student, score);
 	}
 
 	// 성적 수정
 	public void modifyGrade() {
-		showMyLectures(); // 1.myLectures 조회
-		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
-		getStdList(lecture); // 3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
+		Lecture lecture = selectMyLecture(); // 1.myLecture 선택
+		getStdList(lecture); 				 // 2.myLecture가 가지고 있는 stdList 출력
+		Student student = selectStd(lecture);// 3.stdList에서 성적 수을 원하는 std 선택
 
-		// 5-2.std 성적 수정
+		// 4-2.std 성적 수정
 		int score = Integer.parseInt(scanner.nextLine());
 		modifyStdGrade(lecture, student, score);
 	}
 
 	// 성적 삭제
 	public void delGrade() {
-		showMyLectures(); // 1.myLectures 조회
-		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
-		getStdList(lecture); // 3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
-		delStdGrade(lecture, student); // 5-2.std 성적 삭제
+		Lecture lecture = selectMyLecture(); // 1.myLecture 선택
+		getStdList(lecture); 				 // 2.myLecture가 가지고 있는 stdList 출력
+		Student student = selectStd(lecture);// 3.stdList에서 성적 수을 원하는 std 선택
+		delStdGrade(lecture, student); 		 // 4-3.std 성적 삭제
 	}
-
+	
+	
 	// Template Method(성적 입력,수정,삭제)
 	// 성적 처리 방식은 다음의 5단계로 이루어진다.
-	// 1.나의 강의 조회
-	// 2.나의 강의 선택
-	// 3.나의 강의를 수강하는 학생 조회
-	// 4.학생 선택
-	// 5-1.성적 입력
-	// 5-2.성적 수정
-	// 5-3.성적 삭제
+	// 1.나의 강의 선택
+	// 2.나의 강의를 수강하는 학생 조회
+	// 3.학생 선택
+	// 4-1.성적 입력
+	// 4-2.성적 수정
+	// 4-3.성적 삭제
 
-	// 1.myLectures 조회
-	// 강의 수가 많을 경우 조회하지 않고 바로 코드 입력하는 곳으로 이동할 수 있는 것도 만들어야??
-	private void showMyLectures() {
-		for (Map.Entry lec : myLectures.entrySet()) {
-			System.out.println(lec.getValue());
-		}
-	}
-
-	// 2.myLecture 선택
+	// 1.myLecture 선택
 	private Lecture selectMyLecture() {
 		System.out.print("성적 입력을 원하는 강의 코드를 입력하세요: ");
 		String input = scanner.nextLine();
@@ -84,14 +73,14 @@ public class Professor extends PersonalInfo implements Serializable {
 		return null;
 	}
 
-	// 3.myLecture가 가지고 있는 stdList 출력
+	// 2.myLecture가 가지고 있는 stdList 출력
 	private void getStdList(Lecture lecture) {
 		for (Map.Entry lec : lecture.getSignedStdList().entrySet()) {
 			System.out.println(lec.getValue());
 		}
 	}
 
-	// 4.stdList에서 성적 입력을 원하는 std 선택
+	// 3.stdList에서 성적 입력을 원하는 std 선택
 	private Student selectStd(Lecture lecture) {
 		System.out.print("성적을 입력할 학생의 학번을 입력하세요: ");
 		String input = scanner.nextLine();
@@ -107,21 +96,27 @@ public class Professor extends PersonalInfo implements Serializable {
 		System.out.println("일치하는 학생의 학번이 없습니다.");
 		return null;
 	}
-
-	// 5-1. std의 성적 입력
+	
+	// 4-1. std의 성적 입력
 	private void writeStdGrade(Lecture lecture, Student student, int score) {
 		student.getGradeMap().put(lecture.getLecName(), score);
 		// 성적 입력 수정 삭제할 시에 각 과목을 찾는 key로 lecCode 사용
 	}
-
-	// 5-2. std 성적 수정(replace)
+	// 4-2. std 성적 수정(replace)
 	private void modifyStdGrade(Lecture lecture, Student student, int score) {
 		student.getGradeMap().replace(lecture.getLecName(), score);
 	}
-
-	// 5-3. std 성적 삭제(remove)
+	// 4-3. std 성적 삭제(remove)
 	private void delStdGrade(Lecture lecture, Student student) {
 		student.getGradeMap().remove(lecture.getLecName());
+	}
+	
+	// myLectures 조회
+	// 강의 수가 많을 경우 조회하지 않고 바로 코드 입력하는 곳으로 이동할 수 있는 것도 만들어야??
+	public void showMyLectures() {
+		for (Map.Entry lec : myLectures.entrySet()) {
+			System.out.println(lec.getValue());
+		}
 	}
 	
 	@Override
