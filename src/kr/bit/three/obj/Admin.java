@@ -15,7 +15,7 @@ public class Admin implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Scanner input;
-	private Map<String, Student> students;
+	public Map<String, Student> students;
 	private Map<String, Professor> professors;
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
@@ -100,7 +100,7 @@ public class Admin implements Serializable {
 		
 		professors = new HashMap<String, Professor>();
 		
-		if (professors.containsKey(regId)) {
+		if (!professors.containsKey(regId)) {
 			professors.put(regId, newProf);
 		} else {
 			System.out.println("이미 등록된 교수입니다.");
