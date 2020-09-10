@@ -15,7 +15,7 @@ public class Admin implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Scanner input;
-	public Map<String, Student> students;
+	private Map<String, Student> students;
 	private Map<String, Professor> professors;
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;

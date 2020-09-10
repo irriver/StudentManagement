@@ -9,12 +9,12 @@ public class Student extends PersonalInfo implements Serializable {
 	private Scanner scanner;
 	
 	private Map<String, Lecture> myLectures;
-	private Map<String, Integer> gradeMap;
+	private Map<String, Integer> myGrades;
 	
 	public Student(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
 		this.myLectures = new HashMap<String, Lecture>();
-		this.gradeMap = new HashMap<String, Integer>();
+		this.myGrades = new HashMap<String, Integer>();
 		
 		scanner = new Scanner(System.in);
 	}
@@ -86,7 +86,7 @@ public class Student extends PersonalInfo implements Serializable {
 
 	// getter, setter
 	public Map<String, Integer> getGradeMap() {
-		return gradeMap;
+		return myGrades;
 	}
 
 	@Override
