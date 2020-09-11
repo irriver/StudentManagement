@@ -19,7 +19,7 @@ public class MainController{
 		this.lib = new Lib();
 	}
 
-	public void mainMethod() {	
+	public void mainMethod() {
 		while(true) {
 			input = ui.UiMethod();
 			if(input.equals("1")) { //학생 계정 선택

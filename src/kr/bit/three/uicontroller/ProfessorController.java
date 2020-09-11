@@ -1,12 +1,19 @@
 package kr.bit.three.uicontroller;
 
+import java.util.Scanner;
+
+import kr.bit.three.obj.Admin;
 import kr.bit.three.obj.Professor;
 import kr.bit.three.ui.ProfessorUi;
 
 public class ProfessorController {
-	String input;
-	ProfessorUi professor_ui;
-	Lib lib;
+	private String input;
+	private ProfessorUi professor_ui;
+	private Lib lib;
+	
+	//로그인 기능 대체를 위한 iv
+	private Admin admin = Admin.getInstance();
+	private Scanner scan = new Scanner(System.in);
 	
 	public ProfessorController() {
 		this.input = "";
@@ -14,8 +21,13 @@ public class ProfessorController {
 		this.lib = new Lib();
 	}
 	
-	public void professorMethod(Professor prof) {
+	public void professorMethod() {
 Loop_1 :while(true) {
+			//로그인 기능 대체를 위한 professor 객체 호출
+			//로그인을 한다는 가정이 있으므로 반드시 맞는 교번 입력
+			String profID = scan.nextLine();
+			Professor prof = admin.getProfessors().get(profID);
+	
 			input = professor_ui.professorMethod();
 			if(input.equals("1")) { //내 강의 목록 조회
 				lib.cls();
