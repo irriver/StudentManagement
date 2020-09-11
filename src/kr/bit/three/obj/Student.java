@@ -51,7 +51,10 @@ public class Student extends PersonalInfo implements Serializable {
 
 	// 성적 확인
 	public void checkGrade() {
-		
+		//myGrades map의 key: LecName, value: score
+		for(Map.Entry<String, Integer> grade : myGrades.entrySet()) {
+			System.out.printf("%s: %d점\n", grade.getKey(), grade.getValue());
+		}
 	}
 
 	// myLectures 조회
