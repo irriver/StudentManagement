@@ -18,32 +18,56 @@ public class Professor extends PersonalInfo implements Serializable {
 
 	// 성적 입력
 	public void writeGrade() {
-		Lecture lecture = selectMyLecture(); // 1.myLecture 선택
-		getStdList(lecture); 				 // 2.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 3.stdList에서 성적 수을 원하는 std 선택
-
-		// 4-1.std 성적 입력
-		int score = Integer.parseInt(scanner.nextLine());
-		writeStdGrade(lecture, student, score);
+		try {
+			Lecture lecture = selectMyLecture(); 		// 1.myLecture 선택
+			if(selectMyLecture().equals(null)) return;  // 일치하는 강의 코드 없을 시 return
+			
+	//(std 출력 이후에 같은 과목에서 여러 학생들의 성적만 계속 입력할 수 있는 기능 구현할까??)
+			getStdList(lecture); 				 		// 2.myLecture가 가지고 있는 stdList 출력
+			Student student = selectStd(lecture);		// 3.stdList에서 성적 입력을 원하는 std 선택
+			if(student.equals(null)) return;			// 일치하는 std 없을 시 return
+			
+			// 4-1.std 성적 입력
+			writeStdGrade(lecture, student);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 값을 입력하였습니다.");
+		}
 	}
 
 	// 성적 수정
 	public void modifyGrade() {
-		Lecture lecture = selectMyLecture(); // 1.myLecture 선택
-		getStdList(lecture); 				 // 2.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 3.stdList에서 성적 수을 원하는 std 선택
-
-		// 4-2.std 성적 수정
-		int score = Integer.parseInt(scanner.nextLine());
-		modifyStdGrade(lecture, student, score);
+		try {
+			Lecture lecture = selectMyLecture(); 		// 1.myLecture 선택
+			if(selectMyLecture().equals(null)) return;  // 일치하는 강의 코드 없을 시 return
+			
+			getStdList(lecture); 				 		// 2.myLecture가 가지고 있는 stdList 출력
+			Student student = selectStd(lecture);		// 3.stdList에서 성적 수을 원하는 std 선택
+			if(student.equals(null)) return;			// 일치하는 std 없을 시 return
+			
+			// 4-2.std 성적 수정
+			modifyStdGrade(lecture, student);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 값을 입력하였습니다.");
+		}
 	}
 
 	// 성적 삭제
 	public void delGrade() {
-		Lecture lecture = selectMyLecture(); // 1.myLecture 선택
-		getStdList(lecture); 				 // 2.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 3.stdList에서 성적 수을 원하는 std 선택
-		delStdGrade(lecture, student); 		 // 4-3.std 성적 삭제
+		try {
+			Lecture lecture = selectMyLecture(); 		// 1.myLecture 선택
+			if(selectMyLecture().equals(null)) return;  // 일치하는 강의 코드 없을 시 return
+			
+			getStdList(lecture); 				 		// 2.myLecture가 가지고 있는 stdList 출력
+			Student student = selectStd(lecture);		// 3.stdList에서 성적 수을 원하는 std 선택
+			if(student.equals(null)) return;			// 일치하는 std 없을 시 return
+			
+			delStdGrade(lecture, student); 				// 4-3.std 성적 삭제
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 값을 입력하였습니다.");
+		}
 	}
 	
 	
@@ -62,58 +86,98 @@ public class Professor extends PersonalInfo implements Serializable {
 		String input = scanner.nextLine();
 
 		// 일치하는 코드 있을 시 return the lecture;
-		for (Map.Entry lec : myLectures.entrySet()) {
-			if (lec.getKey().equals(input)) {
-				return (Lecture) lec;
-			}
+		if(myLectures.containsKey(input)) {
+			return myLectures.get(input);
+		} else {
+			System.out.println("일치하는 강의 코드가 없습니다.");
+			return null;
 		}
-
-		// 일치하는 코드 없을 시 return null
-		System.out.println("일치하는 강의 코드가 없습니다.");
-		return null;
 	}
 
 	// 2.myLecture가 가지고 있는 stdList 출력
 	private void getStdList(Lecture lecture) {
-		for (Map.Entry lec : lecture.getSignedStdList().entrySet()) {
-			System.out.println(lec.getValue());
-		}
+		lecture.getSignedStdList().values().toString();
 	}
 
 	// 3.stdList에서 성적 입력을 원하는 std 선택
 	private Student selectStd(Lecture lecture) {
 		System.out.print("성적을 입력할 학생의 학번을 입력하세요: ");
 		String input = scanner.nextLine();
-
+		
 		// 일치하는 학번 있을 시 return the student
-		for (Map.Entry lec : lecture.getSignedStdList().entrySet()) {
-			if (lec.getKey().equals(input)) {
-				return (Student) lec.getValue();
-			}
+		if(lecture.getSignedStdList().containsKey(input)) {
+			return lecture.getSignedStdList().get(input);
+		} else {
+			System.out.println("일치하는 학생의 학번이 없습니다.");
+			return null;
 		}
-
-		// 일치하는 학번 없을 시 return null
-		System.out.println("일치하는 학생의 학번이 없습니다.");
-		return null;
 	}
 	
 	// 4-1. std의 성적 입력
-	private void writeStdGrade(Lecture lecture, Student student, int score) {
-		student.getGradeMap().put(lecture.getLecName(), score);
-		// 성적 입력 수정 삭제할 시에 각 과목을 찾는 key로 lecCode 사용
+	private void writeStdGrade(Lecture lecture, Student student) {
+		try {
+			System.out.print(student.getName() +" 학생의 성적을 입력하세요: ");
+			int score = Integer.parseInt(scanner.nextLine());
+			
+			//성적의 범위(0~100점) 설정
+			if(!(0 <= score && score <= 100)) {
+				System.out.println("올바른 점수의 범위가 아닙니다.");
+				System.out.println("0~100점 사이의 점수 입력");
+			} else {
+				student.getGradeMap().put(lecture.getLecName(), score);	
+				System.out.println(student.getName() + " 학생 성적 입력 완료");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 성적을 입력하였습니다.");
+		}
 	}
-	// 4-2. std 성적 수정(replace)
-	private void modifyStdGrade(Lecture lecture, Student student, int score) {
-		student.getGradeMap().replace(lecture.getLecName(), score);
+	// 4-2. std 성적 수정
+	private void modifyStdGrade(Lecture lecture, Student student) {
+		try {
+			System.out.print(student.getName() +" 학생의 수정할 성적을 입력하세요: ");
+			int score = Integer.parseInt(scanner.nextLine());
+			
+			//성적의 범위(0~100점) 설정
+			if(!(0 <= score && score <= 100)) {
+				System.out.println("올바른 점수의 범위가 아닙니다.");
+				System.out.println("0~100점 사이의 점수 입력");
+			} else {
+				System.out.printf("%s 학생의 점수가 %d에서 %d로 변경되었습니다.\n",
+									student.getName(),
+									student.getGradeMap().get(lecture.getLecName()),
+									score);
+				student.getGradeMap().replace(lecture.getLecName(), score);
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 성적을 입력하였습니다.");
+		}
 	}
+	
 	// 4-3. std 성적 삭제(remove)
 	private void delStdGrade(Lecture lecture, Student student) {
-		student.getGradeMap().remove(lecture.getLecName());
+		try {
+			System.out.println("삭제하시겠습니까?(Y:삭제 / N:보류");
+			String input = scanner.nextLine();
+			
+			if(input.equalsIgnoreCase("Y")) {
+				student.getGradeMap().remove(lecture.getLecName());	
+				System.out.println(student.getName() + " 학생의 성적이 삭제되었습니다.");
+			} else if(input.equalsIgnoreCase("N")) {
+				System.out.println("보류되었습니다.");
+			} else {
+				System.out.println("잘못된 값을 입력하였습니다.");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	// myLectures 조회
-	// 강의 수가 많을 경우 조회하지 않고 바로 코드 입력하는 곳으로 이동할 수 있는 것도 만들어야??
 	public void showMyLectures() {
+		System.out.println("==========내 강의 목록==========");
 		for (Lecture lec : myLectures.values()) {
 			System.out.println(lec.toString());
 		}
