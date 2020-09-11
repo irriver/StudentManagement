@@ -90,6 +90,6 @@ public class Student extends PersonalInfo implements Serializable {
 		return "학번: " + getRegId() + "\t성명: " + getName()
 		+ "\n주민번호: " + getIdNo()
 		+ "\n소속학과: " + getDept() + "\t전화번호: " + getPhNo()
-		+ "-----------------------";
+		+ "\n-----------------------";
 	}
 }
