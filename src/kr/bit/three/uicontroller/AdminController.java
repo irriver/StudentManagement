@@ -53,10 +53,12 @@ Loop_2 :while(true) {
 			input = admin_ui.manageStudent();
 			if(input.equals("1")) { //학생정보 등록
 				lib.cls();
+				admin.stdRegister();
 				System.out.println("학생 정보가 등록되었습니다.");
 				lib.cls();
 			}else if(input.equals("2")) { //학생정보 수정
 				lib.cls();
+				method
 				System.out.println("학생 정보가 수정되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //전체 학생정보 조회
@@ -85,18 +87,22 @@ Loop_3 :while(true) {
 			input = admin_ui.manageProfessor();
 			if(input.equals("1")) { //교수정보 등록
 				lib.cls();
+				method
 				System.out.println("교수 정보가 등록되었습니다.");
 				lib.cls();
 			}else if(input.equals("2")) {//교수정보 수정
 				lib.cls();
+				method
 				System.out.println("교수 정보가 수정되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //전체 교수정보 조회
 				lib.cls();
+				method
 				System.out.println("교수 정보를 조회하였습니다.");
 				lib.cls();
 			}else if(input.equals("0")) { //이전메뉴
 				lib.cls();
+				method
 				System.out.println("이전 화면으로 돌아갑니다.");
 				lib.cls();
 				break Loop_3;
@@ -113,6 +119,7 @@ Loop_4 :while(true) {
 			input = admin_ui.manageSubject();
 			if(input.equals("1")) { //강의 개설
 				lib.cls();
+				method
 				System.out.println("강의를 개설하였습니다.");
 				lib.cls();
 			}else if(input.equals("2")) {//강의 수정
