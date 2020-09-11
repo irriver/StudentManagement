@@ -1,12 +1,19 @@
 package kr.bit.three.uicontroller;
 
+import java.util.Scanner;
+
+import kr.bit.three.obj.Admin;
 import kr.bit.three.obj.Student;
 import kr.bit.three.ui.StudentUi;
 
 public class StudentController {
-	String input;
-	StudentUi student_ui;
-	Lib lib;
+	private String input;
+	private StudentUi student_ui;
+	private Lib lib;
+	
+	//로그인 기능 대체를 위한 iv
+	private Admin admin = Admin.getInstance();
+	private Scanner scan = new Scanner(System.in);
 	
 	public StudentController() {
 		this.input = "";
@@ -14,11 +21,14 @@ public class StudentController {
 		this.lib = new Lib();
 	}
 	
-	public void studentMethod(Student student) {
+	public void studentMethod() {
 Loop_1 :while(true) {
+			//로그인 기능 대체를 위한 student 객체 호출
+			//로그인을 한다는 가정이 있으므로 반드시 맞는 학번 입력
+			String stdID = scan.nextLine();
+			Student student = admin.getStudents().get(stdID);
+	
 			input = student_ui.studentMethod();
-			
-			
 			if(input.equals("1")) { //수강 신청
 				lib.cls();
 				student.signUpLecture(student);

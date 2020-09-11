@@ -3,9 +3,9 @@ package kr.bit.three.ui;
 import java.util.Scanner;
 
 public class MainUi {
-	public String UiMethod() {
-		Scanner scan = new Scanner(System.in);
-		
+	Scanner scan = new Scanner(System.in);
+
+	public String UiMethod() {	
 		System.out.println();
 		System.out.println("======================");
 		System.out.println();
@@ -21,7 +21,6 @@ public class MainUi {
 		System.out.println("------------------------------------");
 		System.out.printf("사용자 계정을 선택해 주세요 >> ");
 		String inputNum = scan.nextLine();
-		
 		return inputNum;
 	}
 }

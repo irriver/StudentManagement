@@ -2,16 +2,12 @@ package kr.bit.three.obj;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Admin implements Serializable {
-
-	/**
-	 * 	version 1.00 20-09-08
-	 * 	@author 안가람
-	 */
-	
+	private static Admin admin = null;
 	private static final long serialVersionUID = 1L;
 	
 	private Scanner input;
@@ -20,12 +16,27 @@ public class Admin implements Serializable {
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
 	
-	public Admin() {
+	private Admin() {
 		input = new Scanner(System.in);
 		students = new HashMap<String, Student>();
 		professors = new HashMap<String, Professor>();
 		lectures = new HashMap<String, Lecture>();
 	}
+
+	public static Admin getInstance() {
+		if(admin == null) {
+			return admin = new Admin();
+		}
+		return admin;
+		
+	}
+
+	/**
+	 * 	version 1.00 20-09-08
+	 * 	@author 안가람
+	 */
+	
+	
 
 //---------------------------- 학생 관련 업무 ------------------------------
 
@@ -193,4 +204,14 @@ public class Admin implements Serializable {
 	public static Map<String, Lecture> getLectures() {
 		return lectures;
 	}
+	
+	//getter
+	public Map<String, Student> getStudents() {
+		return students;
+	}
+	public Map<String, Professor> getProfessors() {
+		return professors;
+	}
+	
+	
 }

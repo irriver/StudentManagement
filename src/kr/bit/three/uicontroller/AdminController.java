@@ -14,8 +14,11 @@ public class AdminController {
 		this.lib = new Lib();
 	}
 	
-	public void adminMethod(Admin admin) {
+	public void adminMethod() {
 Loop_1 :while(true) {
+			//admin 로그인 기능 대체
+			Admin admin = Admin.getInstance();
+			
 			input = admin_ui.adminUi();
 			if(input.equals("1")) { //학생 관리 선택
 				lib.cls();
