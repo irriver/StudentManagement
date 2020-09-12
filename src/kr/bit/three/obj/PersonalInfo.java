@@ -1,12 +1,17 @@
 package kr.bit.three.obj;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 public class PersonalInfo {
-	
 	private String name;
 	private String regId;
 	private String dept;
 	private String idNo;
 	private String phNo;
+	private Map<String, Lecture> myLectures;
+	public Scanner scanner;
 	
 	public PersonalInfo(String name, String regId, String dept, String idNo, String phNo) {
 		super();
@@ -15,42 +20,17 @@ public class PersonalInfo {
 		this.dept = dept;
 		this.idNo = idNo;
 		this.phNo = phNo;
+		this.myLectures = new HashMap<String, Lecture>();
+		this.scanner = new Scanner(System.in);
 	}
+	
+	public String getName() { return name; }
+	public String getRegId() { return regId;}
+	public String getDept() { return dept; }
+	public String getIdNo() { return idNo; }
+	public String getPhNo() { return phNo; }
+	public Map<String, Lecture> getMyLectures() { return myLectures; }
 
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getRegId() {
-		return regId;
-	}
-	public void setRegId(String regId) {
-		this.regId = regId;
-	}
-	public String getDept() {
-		return dept;
-	}
-	public void setDept(String dept) {
-		this.dept = dept;
-	}
-	public String getIdNo() {
-		return idNo;
-	}
-	public void setIdNo(String idNo) {
-		this.idNo = idNo;
-	}
-	public String getPhNo() {
-		return phNo;
-	}
-	public void setPhNo(String phNo) {
-		this.phNo = phNo;
-	}
-
-	@Override
-	public String toString() {
-		return "PersonalInfo [name=" + name + ", regId=" + regId + ", dept=" + dept + ", idNo=" + idNo + ", phNo="
-				+ phNo + "]";
-	}
+	public void setDept(String dept) { this.dept = dept; }
+	public void setPhNo(String phNo) { this.phNo = phNo; }
 }
