@@ -22,23 +22,23 @@ public class StudentController {
 	}
 	
 	public void studentMethod() {
-Loop_1 :while(true) {
-			//로그인 기능 대체를 위한 student 객체 호출
-			String stdID;
-			while(true) {
-				System.out.print("로그인할 학생의 학번을 입력하세요(이전화면:0): ");
-				stdID = scan.nextLine();
-				if(admin.getStudents().containsKey(stdID)) {
-					break;
-				} else if(stdID.equals("0")) {
-					break Loop_1;
-				} else {
-					System.out.println("일치하는 학번의 학생이 없습니다.");
-					System.out.println("다시 입력하여 주십시오.");
-				}
+		//로그인 기능 대체를 위한 student 객체 호출
+		String stdID;
+		while(true) {
+			System.out.print("로그인할 학생의 학번을 입력하세요(이전화면:0): ");
+			stdID = scan.nextLine().trim();
+			if(admin.getStudents().containsKey(stdID)) {
+				break;
+			} else if(stdID.equals("0")) {
+				return;
+			} else {
+				System.out.println("일치하는 학번의 학생이 없습니다.");
+				System.out.println("다시 입력하여 주십시오.");
 			}
-			Student student = admin.getStudents().get(stdID);
-	
+		}
+		Student student = admin.getStudents().get(stdID);
+		
+Loop_1 :while(true) {
 			input = student_ui.studentMethod();
 			if(input.equals("1")) { //수강 신청
 				lib.cls();
@@ -65,7 +65,7 @@ Loop_1 :while(true) {
 				student.showLectures();
 				System.out.println("전체 강의 목록이 조회되었습니다.");
 				lib.cls();
-			}else if(input.equals("6")) { //이전 화면으로 돌아가기
+			}else if(input.equals("0")) { //이전 화면으로 돌아가기
 				lib.cls();
 				System.out.println("이전 화면으로 돌아갑니다.");
 				lib.cls();

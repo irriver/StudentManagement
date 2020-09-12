@@ -83,11 +83,11 @@ public class Professor extends PersonalInfo implements Serializable {
 	// 1.myLecture 선택
 	private Lecture selectMyLecture() {
 		System.out.print("성적 입력을 원하는 강의 코드를 입력하세요: ");
-		String input = scanner.nextLine();
+		String lecCode = scanner.nextLine();
 
 		// 일치하는 코드 있을 시 return the lecture;
-		if(myLectures.containsKey(input)) {
-			return myLectures.get(input);
+		if(myLectures.containsKey(lecCode)) {
+			return myLectures.get(lecCode);
 		} else {
 			System.out.println("일치하는 강의 코드가 없습니다.");
 			return null;
@@ -102,11 +102,11 @@ public class Professor extends PersonalInfo implements Serializable {
 	// 3.stdList에서 성적 입력을 원하는 std 선택
 	private Student selectStd(Lecture lecture) {
 		System.out.print("성적을 입력할 학생의 학번을 입력하세요: ");
-		String input = scanner.nextLine();
+		String stdID = scanner.nextLine();
 		
 		// 일치하는 학번 있을 시 return the student
-		if(lecture.getSignedStdList().containsKey(input)) {
-			return lecture.getSignedStdList().get(input);
+		if(lecture.getSignedStdList().containsKey(stdID)) {
+			return lecture.getSignedStdList().get(stdID);
 		} else {
 			System.out.println("일치하는 학생의 학번이 없습니다.");
 			return null;
@@ -117,7 +117,7 @@ public class Professor extends PersonalInfo implements Serializable {
 	private void writeStdGrade(Lecture lecture, Student student) {
 		try {
 			System.out.print(student.getName() +" 학생의 성적을 입력하세요: ");
-			int score = Integer.parseInt(scanner.nextLine());
+			int score = Integer.parseInt(scanner.nextLine().trim());
 			
 			//성적의 범위(0~100점) 설정
 			if(!(0 <= score && score <= 100)) {
