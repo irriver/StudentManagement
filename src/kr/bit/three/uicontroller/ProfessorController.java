@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import kr.bit.three.obj.Admin;
 import kr.bit.three.obj.Professor;
-import kr.bit.three.obj.Student;
 import kr.bit.three.ui.ProfessorUi;
 
 public class ProfessorController {

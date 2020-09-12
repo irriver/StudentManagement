@@ -107,14 +107,16 @@ public class Lecture implements Serializable {
 	public void setSignedStdList(Map<String, Student> signedStdList) {
 		this.signedStdList = signedStdList;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "강의코드: " + getLecCode() 
-		+ "\t\t강의명: " + getLecName() 
-		+ "\n담당교수: " + getProfName() 
-		+ "\t개설학기: " + getSemester() 
-		+ "\t학점: " + getTimes() 
-		+ "\t수강인원: " + getMaxStd();
+		return "강의코드: " + lecCode
+		+ "\t강의명: " + lecName
+		+ "\n담당교수: " + profName
+		+ "\t개설학기: " + semester
+		+ "\t학점: " + times
+		+ "\t수강인원: " + signedStdList.size();
 	}
+
+
 }
