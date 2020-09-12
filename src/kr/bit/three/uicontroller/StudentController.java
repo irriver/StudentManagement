@@ -25,6 +25,7 @@ public class StudentController {
 Loop_1 :while(true) {
 			//로그인 기능 대체를 위한 student 객체 호출
 			//로그인을 한다는 가정이 있으므로 반드시 맞는 학번 입력
+			System.out.print("로그인할 학생의 학번을 입력하세요: ");
 			String stdID = scan.nextLine();
 			Student student = admin.getStudents().get(stdID);
 	

@@ -19,17 +19,21 @@ public class Student extends PersonalInfo implements Serializable {
 	
 	// 수강 신청
 	public void signUpLecture(Student student) {
-		System.out.print("수강 신청을 원하는 강의코드를 입력하세요: ");
-		String input = scanner.nextLine();
-
 		// 전체 강의 목록에서 수강희망 강의코드 존재 시 해당 학생을 아래에 추가
 		// 1.myLectures, 2.강의 클래스의 signedStdList
-		if(Admin.getLectures().containsKey(input)) {
-			Lecture stdLecture = Admin.getLectures().get(input);
-			myLectures.put(input, stdLecture);
-			stdLecture.addStd(student);
-		} else {
-			System.out.println("일치하는 강의코드가 없습니다.");
+		System.out.print("수강 신청을 원하는 강의코드를 입력하세요: ");
+		String input = scanner.nextLine();
+		
+		try {
+			if(Admin.getLectures().containsKey(input)) {
+				Lecture stdLecture = Admin.getLectures().get(input);
+				myLectures.put(input, stdLecture);
+				stdLecture.addStd(student);
+			} else {
+				throw new Exception("일치하는 강의코드가 없습니다.");
+			}			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

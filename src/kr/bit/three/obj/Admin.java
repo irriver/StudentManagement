@@ -280,4 +280,12 @@ public class Admin implements Serializable {
 	public static Map<String, Lecture> getLectures() {
 		return lectures;
 	}
+	public Map<String, Student> getStudents() {
+		return students;
+	}
+	public Map<String, Professor> getProfessors() {
+		return professors;
+	}
+	
+	
 }

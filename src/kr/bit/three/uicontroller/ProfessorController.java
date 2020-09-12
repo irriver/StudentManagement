@@ -25,6 +25,7 @@ public class ProfessorController {
 Loop_1 :while(true) {
 			//로그인 기능 대체를 위한 professor 객체 호출
 			//로그인을 한다는 가정이 있으므로 반드시 맞는 교번 입력
+			System.out.print("로그인할 교수의 교번을 입력하세요: ");
 			String profID = scan.nextLine();
 			Professor prof = admin.getProfessors().get(profID);
 	
