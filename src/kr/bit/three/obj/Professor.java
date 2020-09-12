@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class Professor extends PersonalInfo implements Serializable {
-
 	public Professor(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
 	}

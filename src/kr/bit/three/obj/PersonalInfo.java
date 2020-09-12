@@ -30,5 +30,7 @@ public class PersonalInfo {
 	public String getIdNo() { return idNo; }
 	public String getPhNo() { return phNo; }
 	public Map<String, Lecture> getMyLectures() { return myLectures; }
-	public Scanner getScanner() { return scanner; }
+
+	public void setDept(String dept) { this.dept = dept; }
+	public void setPhNo(String phNo) { this.phNo = phNo; }
 }
