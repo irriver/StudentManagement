@@ -6,14 +6,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Professor extends PersonalInfo implements Serializable {
-	private Scanner scanner;
 	private Map<String, Lecture> myLectures;
 
 	public Professor(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
-
-		scanner = new Scanner(System.in);
-		myLectures = new HashMap<String, Lecture>();
 	}
 
 	// 성적 입력

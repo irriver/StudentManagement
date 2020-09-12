@@ -1,12 +1,17 @@
 package kr.bit.three.obj;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 public class PersonalInfo {
-	
 	private String name;
 	private String regId;
 	private String dept;
 	private String idNo;
 	private String phNo;
+	private Map<String, Lecture> myLectures;
+	private Scanner scanner;
 	
 	public PersonalInfo(String name, String regId, String dept, String idNo, String phNo) {
 		super();
@@ -15,6 +20,8 @@ public class PersonalInfo {
 		this.dept = dept;
 		this.idNo = idNo;
 		this.phNo = phNo;
+		this.myLectures = new HashMap<String, Lecture>();
+		this.scanner = new Scanner(System.in);
 	}
 
 	public String getName() {
