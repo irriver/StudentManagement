@@ -131,7 +131,7 @@ Loop_4 :while(true) {
 //			lib.cls();
 //			System.out.println("강의 정보를 삭제하였습니다.");
 //			lib.cls();
-			}else if(input.equals("4")) { //강의 조회
+			}else if(input.equals("3")) { //강의 조회
 				lib.cls();
 				Admin.lecLookUp();
 				System.out.println("강의 정보를 조회하였습니다.");
