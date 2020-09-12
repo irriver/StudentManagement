@@ -187,6 +187,12 @@ public class Professor extends PersonalInfo implements Serializable {
 		}
 	}
 	
+	
+	//getter
+	public Map<String, Lecture> getMyLectures() {
+		return myLectures;
+	}
+
 	@Override
 	public String toString() {
 		return "교번: " + getRegId() + "\t성명: " + getName()
