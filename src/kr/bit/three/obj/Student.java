@@ -11,6 +11,7 @@ public class Student extends PersonalInfo implements Serializable {
 	public Student(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
 		this.myGrades = new HashMap<String, Integer>();
+		this.scanner = new Scanner(System.in);
 	}
 	
 	// 수강 신청
@@ -22,7 +23,7 @@ public class Student extends PersonalInfo implements Serializable {
 			// 1.myLectures, 2.강의 클래스의 signedStdList
 			if(Admin.getLectures().containsKey(lecCode)) {
 				Lecture stdLecture = Admin.getLectures().get(lecCode);
-				myLectures.put(lecCode, stdLecture);
+				getMyLectures().put(lecCode, stdLecture);
 				stdLecture.addStd(student);
 			} else {
 				throw new Exception("일치하는 강의코드가 없습니다.");
@@ -41,7 +42,7 @@ public class Student extends PersonalInfo implements Serializable {
 		// 1.myLEctures, 2.강의 클래스의 signedStdList
 		if(Admin.getLectures().containsKey(input)) {
 			Lecture stdLecture = Admin.getLectures().get(input);
-			myLectures.remove(input);
+			getMyLectures().remove(input);
 			stdLecture.subStd(student);
 		} else {
 			System.out.println("일치하는 강의코드가 없습니다.");
@@ -58,7 +59,7 @@ public class Student extends PersonalInfo implements Serializable {
 
 	// myLectures 조회
 	public void showMyLectures() {
-		for(Lecture lec : myLectures.values()) {
+		for(Lecture lec : getMyLectures().values()) {
 			System.out.println(lec.toString());
 		}
 	}

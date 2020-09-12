@@ -1,12 +1,9 @@
 package kr.bit.three.obj;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Professor extends PersonalInfo implements Serializable {
-	private Map<String, Lecture> myLectures;
 
 	public Professor(String name, String regId, String dept, String idNo, String phNo) {
 		super(name, regId, dept, idNo, phNo);
@@ -101,8 +98,8 @@ public class Professor extends PersonalInfo implements Serializable {
 			String lecCode = scanner.nextLine();
 			
 			// 일치하는 코드 있을 시 return the lecture;
-			if(myLectures.containsKey(lecCode)) {
-				return myLectures.get(lecCode);
+			if(getMyLectures().containsKey(lecCode)) {
+				return getMyLectures().get(lecCode);
 			} else if(lecCode.equals("0")) {
 				break;
 			} else {
@@ -202,14 +199,14 @@ public class Professor extends PersonalInfo implements Serializable {
 	// myLectures 조회
 	public void showMyLectures() {
 		System.out.println("==========내 강의 목록==========");
-		for (Lecture lec : myLectures.values()) {
+		for (Lecture lec : getMyLectures().values()) {
 			System.out.println(lec.toString());
 		}
 	}
 	
 	//getter
 	public Map<String, Lecture> getMyLectures() {
-		return myLectures;
+		return getMyLectures();
 	}
 
 	@Override
