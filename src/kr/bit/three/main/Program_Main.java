@@ -8,8 +8,6 @@ import kr.bit.three.uicontroller.MainController;
 
 public class Program_Main {
 	public static void main(String[] args) {
-		
-		
 		Admin admin = Admin.getInstance();
 		Student student = new Student("전선규", "s1", "컴공과", "91", "010");
 		Professor professor = new Professor("임경균", "p1", "컴공과", "80", "010");
