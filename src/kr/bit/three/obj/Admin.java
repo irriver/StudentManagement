@@ -1,10 +1,14 @@
 package kr.bit.three.obj;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,10 +18,9 @@ public class Admin implements Serializable {
 	
 	public static void main(String[] args) {
 		Admin ram = new Admin();
-		ram.stdRegister();
-		ram.storeData();
-		ram.putData();
-		
+		Student std = ram.stdRegister();
+		ram.storeData(std);
+		ram.readData();
 	}
 
 	/**
@@ -34,6 +37,8 @@ public class Admin implements Serializable {
 	private Map<String, Professor> professors;
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
+	private String path = "C:\\Temp\\StdManagement\\";
+	private String typeCode = "S";
 	
 //	 Singleton pattern
 	private static Admin admin = null;
@@ -51,36 +56,64 @@ public class Admin implements Serializable {
 		professors = new HashMap<String, Professor>();
 		lectures = new HashMap<String, Lecture>();
 	}
+
+//----------------------------- 데이터 저장 -----------------------------
 	
-//----------------------------- 학생 데이터 입력 -----------------------------
-	
-	private void storeData() {
-		File file = new File("/Users/sungyujeon/Student-List.txt");
+	//학번을 넘겨받아 파일에 데이터 기록
+	private void storeData(PersonalInfo person) {
+		
+		
+		String idToSave = person.getRegId();
+		File fDir = new File(path + typeCode);
 		
 		try {
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+				File newFile = new File(path + typeCode + idToSave + ".txt");
+				
+				if (!newFile.exists()) {
+					System.out.println("파일 생성");
+					
+					BufferedWriter bw = new BufferedWriter(new FileWriter(newFile));
+					
+					bw.write(students.get(idToSave).getName() + "\n");
+					bw.write(students.get(idToSave).getRegId() + "\n");
+					bw.write(students.get(idToSave).getDept() + "\n");
+					bw.write(students.get(idToSave).getIdNo() + "\n");
+					bw.write(students.get(idToSave).getPhNo() + "\n");
+					
+					bw.close();
+				} else {
+					System.out.println("이미 존재하는 파일 입니다.");
+					return;
+				}
+				//기록한 데이터 콘솔 출력
+				System.out.println(students.get(idToSave).toString());
+				System.out.println("입력하신 데이터가 저장됐습니다.");
+				return;
 			
-			oos.writeObject(students);
-			oos.close();
-			
-		} catch (Exception e) {
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-//----------------------------- 학생 데이터 출력 -----------------------------
+//----------------------------- 데이터 불러오기 -----------------------------
 	
-	private void putData() {
-		File file = new File("/Users/sungyujeon/Student-List.txt");
+	private void readData() {
+		System.out.println("조회하려는 학번 또는 교번을 입력하세요.");
+		String idToRead = input.nextLine().trim();
+		
+		File file = new File(path + typeCode + idToRead + ".txt");
 		
 		try {
-			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-			ois.close();
 			
-			students = (HashMap)ois.readObject();
-			while (students.entrySet() != null) {
-				System.out.println(students.toString());
-				students = (HashMap)ois.readObject();
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			
+			String line  = br.readLine();
+			while (line != null) {
+				System.out.println(line);
+				line = br.readLine();
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -89,6 +122,9 @@ public class Admin implements Serializable {
 //---------------------------- 학생 관련 업무 ------------------------------
 
 	public Student stdRegister() {
+		
+		Student stdToReg = null;
+		
 		System.out.println("등록할 학생의 이름 입력 >> ");
 		String name = input.nextLine().trim();
 		
@@ -109,12 +145,11 @@ public class Admin implements Serializable {
 		// 등록할 학생의 학번이 이미 있는지 확인 >> Map에서 키가 있는지 조회
 		if (!students.containsKey(regId)) {
 			students.put(regId, newStd);
-			return newStd;
+			stdToReg = newStd;
 		} else {
 			System.out.println("이미 등록된 학번입니다.");
-			return null;
 		}
-//		등록한 학생은 학생 정보 저장 파일로 내보내는 함수 호출 +++++++++
+		return stdToReg;
 	}
 	
 	//기존 학생 정보 수정 >> 학과, 전화번호
