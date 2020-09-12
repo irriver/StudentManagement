@@ -22,12 +22,23 @@ public class ProfessorController {
 	}
 	
 	public void professorMethod() {
+		//로그인 기능 대체를 위한 professor 객체 호출
+		String profID;
+		while(true) {
+			System.out.print("로그인할 교수의 교번을 입력하세요(이전화면:0): ");
+			profID = scan.nextLine();
+			if(admin.getProfessors().containsKey(profID)) {
+				break;
+			} else if(profID.equals("0")) {
+				break;
+			} else {
+				System.out.println("일치하는 교번의 교수가 없습니다.");
+				System.out.println("다시 입력하여 주십시오.");
+			}
+		}
+		Professor prof = admin.getProfessors().get(profID);
+		
 Loop_1 :while(true) {
-			//로그인 기능 대체를 위한 professor 객체 호출
-			//로그인을 한다는 가정이 있으므로 반드시 맞는 교번 입력
-			String profID = scan.nextLine();
-			Professor prof = admin.getProfessors().get(profID);
-	
 			input = professor_ui.professorMethod();
 			if(input.equals("1")) { //내 강의 목록 조회
 				lib.cls();

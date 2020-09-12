@@ -235,6 +235,14 @@ public class Admin implements Serializable {
 		
 		Lecture newLec = new Lecture(lecCode, lecName, profName, semester, times, maxStd);
 		lectures.put(lecCode, newLec);
+		
+		//Professor 클래스 myLecturs에도 추가
+		for(Professor professor : professors.values()) {
+			if(professor.getName().equals(profName)) {
+				professor.getMyLectures().put(lecCode, newLec);
+			}
+		}
+		
 	}
 
 	// 일부 데이터만 수정할 경우 추가할 것***
@@ -280,4 +288,12 @@ public class Admin implements Serializable {
 	public static Map<String, Lecture> getLectures() {
 		return lectures;
 	}
+	public Map<String, Student> getStudents() {
+		return students;
+	}
+	public Map<String, Professor> getProfessors() {
+		return professors;
+	}
+	
+	
 }

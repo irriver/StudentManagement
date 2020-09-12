@@ -15,21 +15,25 @@ public class Student extends PersonalInfo implements Serializable {
 		super(name, regId, dept, idNo, phNo);
 		this.myLectures = new HashMap<String, Lecture>();
 		this.myGrades = new HashMap<String, Integer>();
+		this.scanner = new Scanner(System.in);
 	}
 	
 	// 수강 신청
 	public void signUpLecture(Student student) {
 		System.out.print("수강 신청을 원하는 강의코드를 입력하세요: ");
-		String input = scanner.nextLine();
-
-		// 전체 강의 목록에서 수강희망 강의코드 존재 시 해당 학생을 아래에 추가
-		// 1.myLectures, 2.강의 클래스의 signedStdList
-		if(Admin.getLectures().containsKey(input)) {
-			Lecture stdLecture = Admin.getLectures().get(input);
-			myLectures.put(input, stdLecture);
-			stdLecture.addStd(student);
-		} else {
-			System.out.println("일치하는 강의코드가 없습니다.");
+		String lecCode = scanner.nextLine();
+		try {
+			// 전체 강의 목록에서 수강희망 강의코드 존재 시 해당 학생을 아래에 추가
+			// 1.myLectures, 2.강의 클래스의 signedStdList
+			if(Admin.getLectures().containsKey(lecCode)) {
+				Lecture stdLecture = Admin.getLectures().get(lecCode);
+				myLectures.put(lecCode, stdLecture);
+				stdLecture.addStd(student);
+			} else {
+				throw new Exception("일치하는 강의코드가 없습니다.");
+			}			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -76,9 +80,12 @@ public class Student extends PersonalInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "학번: " + getRegId() + "\t성명: " + getName()
-		+ "\n주민번호: " + getIdNo()
-		+ "\n소속학과: " + getDept() + "\t전화번호: " + getPhNo()
-		+ "-----------------------";
+		String stdInfo = "학번: " + getRegId()
+						+ "\t성명: " + getName()
+						+ "\t주민번호: " + getIdNo()
+						+ "\t소속학과: " + getDept()
+						+ "\t전화번호: " + getPhNo()
+						+ "\n";
+		return stdInfo;
 	}
 }
