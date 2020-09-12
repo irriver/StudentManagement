@@ -20,7 +20,7 @@ public class Professor extends PersonalInfo implements Serializable {
 	public void writeGrade() {
 		try {
 			Lecture lecture = selectMyLecture(); 		// 1.myLecture 선택
-			if(selectMyLecture().equals(null)) return;  // 일치하는 강의 코드 없을 시 return
+			if(selectMyLecture().equals(null)) return;  // 강의 코드 입력하지 않을 시 return
 			
 	//(std 출력 이후에 같은 과목에서 여러 학생들의 성적만 계속 입력할 수 있는 기능 구현할까??)
 			getStdList(lecture); 				 		// 2.myLecture가 가지고 있는 stdList 출력
@@ -39,7 +39,7 @@ public class Professor extends PersonalInfo implements Serializable {
 	public void modifyGrade() {
 		try {
 			Lecture lecture = selectMyLecture(); 		// 1.myLecture 선택
-			if(selectMyLecture().equals(null)) return;  // 일치하는 강의 코드 없을 시 return
+			if(selectMyLecture().equals(null)) return;  // 강의 코드 입력하지 않을 시 return
 			
 			getStdList(lecture); 				 		// 2.myLecture가 가지고 있는 stdList 출력
 			Student student = selectStd(lecture);		// 3.stdList에서 성적 수을 원하는 std 선택
@@ -57,7 +57,7 @@ public class Professor extends PersonalInfo implements Serializable {
 	public void delGrade() {
 		try {
 			Lecture lecture = selectMyLecture(); 		// 1.myLecture 선택
-			if(selectMyLecture().equals(null)) return;  // 일치하는 강의 코드 없을 시 return
+			if(selectMyLecture().equals(null)) return;  // 강의 코드 입력하지 않을 시 return
 			
 			getStdList(lecture); 				 		// 2.myLecture가 가지고 있는 stdList 출력
 			Student student = selectStd(lecture);		// 3.stdList에서 성적 수을 원하는 std 선택
@@ -82,16 +82,20 @@ public class Professor extends PersonalInfo implements Serializable {
 
 	// 1.myLecture 선택
 	private Lecture selectMyLecture() {
-		System.out.print("성적 입력을 원하는 강의 코드를 입력하세요: ");
-		String lecCode = scanner.nextLine();
-
-		// 일치하는 코드 있을 시 return the lecture;
-		if(myLectures.containsKey(lecCode)) {
-			return myLectures.get(lecCode);
-		} else {
-			System.out.println("일치하는 강의 코드가 없습니다.");
-			return null;
+		while(true) {
+			System.out.print("성적 입력을 원하는 강의 코드를 입력하세요(이전 메뉴:0): ");
+			String lecCode = scanner.nextLine();
+			
+			// 일치하는 코드 있을 시 return the lecture;
+			if(myLectures.containsKey(lecCode)) {
+				return myLectures.get(lecCode);
+			} else if(lecCode.equals("0")) {
+				break;
+			} else {
+				System.out.println("일치하는 강의 코드가 없습니다.");
+			}
 		}
+		return null;
 	}
 
 	// 2.myLecture가 가지고 있는 stdList 출력
