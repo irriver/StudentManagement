@@ -17,12 +17,11 @@ public class StudentUi {
 		System.out.println("    3. 성적 조회");
 		System.out.println("    4. 수강 강의 목록 조회");
 		System.out.println("    5. 전체 강의 목록 조회");
-		System.out.println("    6. 이전 화면으로 돌아가기");
+		System.out.println("    0. 이전 화면으로 돌아가기");
 		System.out.println();
 		System.out.println("------------------------------------");
 		System.out.print("번호 입력 >> ");
-		String inputNum = scan.nextLine();
-		
+		String inputNum = scan.nextLine().trim();
 		return inputNum;
 	}
 }
