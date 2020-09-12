@@ -14,6 +14,7 @@ public class MainUi {
 		System.out.println("                     1.          학생                                 ");
 		System.out.println("                     2.          교수                                  ");
 		System.out.println("                     3.          관리자                              ");
+		System.out.println("                     4.          종료                              ");
 		System.out.println("       ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ      ");
 		System.out.println("                                                                      ");
 		System.out.println("*******************************************");
