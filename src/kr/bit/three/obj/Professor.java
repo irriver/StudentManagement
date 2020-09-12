@@ -6,27 +6,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Professor extends PersonalInfo implements Serializable {
-<<<<<<< HEAD
-
-	/**
-	 * Created-Date 20-09-09
-	 * 
-	 * @author 전선규
-	 */
-=======
-	private Scanner scanner;
-	private Map<String, Lecture> myLectures;
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
-	private static final long serialVersionUID = 1L;
-	
-	public Professor(String name, String regId, String dept, String idNo, String phNo) {
-		super(name, regId, dept, idNo, phNo);
-		
-		scanner = new Scanner(System.in);
-		myLectures = new HashMap<String, Lecture>();
-	}
-
-<<<<<<< HEAD
 	private Scanner scanner;
 	private Map<String, Lecture> myLectures;
 
@@ -37,223 +16,214 @@ public class Professor extends PersonalInfo implements Serializable {
 		myLectures = new HashMap<String, Lecture>();
 	}
 
-=======
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	// 성적 입력
 	public void writeGrade() {
-		showMyLectures(); // 1.myLectures 조회
-		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
-		getStdList(lecture); // 3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
+		try {
+			//1.myLecture 선택
+			//강의 코드 입력하지 않을 시 return
+			Lecture lecture = selectMyLecture();
+			if(lecture.equals(null)) return;
+			
+			// 2.myLecture가 가지고 있는 stdList 출력
+			getStdList(lecture);
 
-		// 5-1.std 성적 입력
-		int score = Integer.parseInt(scanner.nextLine());
-		writeStdGrade(lecture, student, score);
+			// 3.stdList에서 성적 입력을 원하는 std 선택
+			// 일치하는 std 없을 시 return
+			Student student = selectStd(lecture);
+			if(student.equals(null)) return;
+			
+			// 4-1.std 성적 입력
+			writeStdGrade(lecture, student);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 값을 입력하였습니다.");
+		}
 	}
 
 	// 성적 수정
 	public void modifyGrade() {
-<<<<<<< HEAD
-=======
-
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
-		showMyLectures(); // 1.myLectures 조회
-		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
-		getStdList(lecture); // 3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
-
-		// 5-2.std 성적 수정
-		int score = Integer.parseInt(scanner.nextLine());
-		modifyStdGrade(lecture, student, score);
-<<<<<<< HEAD
+		try {
+			//1.myLecture 선택
+			//강의 코드 입력하지 않을 시 return
+			Lecture lecture = selectMyLecture();
+			if(lecture.equals(null)) return;
+			
+			// 2.myLecture가 가지고 있는 stdList 출력
+			getStdList(lecture);
+			
+			// 3.stdList에서 성적 수정을 원하는 std 선택
+			// 일치하는 std 없을 시 return
+			Student student = selectStd(lecture);
+			if(student.equals(null)) return;
+			
+			// 4-2.std 성적 수정
+			modifyStdGrade(lecture, student);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 값을 입력하였습니다.");
+		}
 	}
 
 	// 성적 삭제
 	public void delGrade() {
-		showMyLectures(); // 1.myLectures 조회
-		Lecture lecture = selectMyLecture(); // 2.myLecture 선택
-		getStdList(lecture); // 3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);// 4.stdList에서 성적 수을 원하는 std 선택
-		delStdGrade(lecture, student); // 5-2.std 성적 삭제
+		try {
+			//1.myLecture 선택
+			//강의 코드 입력하지 않을 시 return
+			Lecture lecture = selectMyLecture();
+			if(lecture.equals(null)) return;
+			
+			// 2.myLecture가 가지고 있는 stdList 출력
+			getStdList(lecture);
+			
+			// 3.stdList에서 성적 삭제를 원하는 std 선택
+			// 일치하는 std 없을 시 return
+			Student student = selectStd(lecture);
+			if(student.equals(null)) return;
+			
+			// 4-3.std 성적 삭제
+			delStdGrade(lecture, student); 
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 값을 입력하였습니다.");
+		}
 	}
-
+	
+	
 	// Template Method(성적 입력,수정,삭제)
 	// 성적 처리 방식은 다음의 5단계로 이루어진다.
-	// 1.나의 강의 조회
-	// 2.나의 강의 선택
-	// 3.나의 강의를 수강하는 학생 조회
-	// 4.학생 선택
-	// 5-1.성적 입력
-	// 5-2.성적 수정
-	// 5-3.성적 삭제
+	// 1.나의 강의 선택
+	// 2.나의 강의를 수강하는 학생 조회
+	// 3.학생 선택
+	// 4-1.성적 입력
+	// 4-2.성적 수정
+	// 4-3.성적 삭제
 
-	// 1.myLectures 조회
-	// 강의 수가 많을 경우 조회하지 않고 바로 코드 입력하는 곳으로 이동할 수 있는 것도 만들어야??
-	private void showMyLectures() {
-		for (Map.Entry lec : myLectures.entrySet()) {
-			System.out.println(lec.getValue());
-		}
-	}
-
-	// 2.myLecture 선택
+	// 1.myLecture 선택
 	private Lecture selectMyLecture() {
-		System.out.print("성적 입력을 원하는 강의 코드를 입력하세요: ");
-		String input = scanner.nextLine();
-
-		// 일치하는 코드 있을 시 return the lecture;
-		for (Map.Entry lec : myLectures.entrySet()) {
-			if (lec.getKey().equals(input)) {
-				return (Lecture) lec;
+		while(true) {
+			System.out.print("성적 입력을 원하는 강의 코드를 입력하세요(이전 메뉴:0): ");
+			String lecCode = scanner.nextLine();
+			
+			// 일치하는 코드 있을 시 return the lecture;
+			if(myLectures.containsKey(lecCode)) {
+				return myLectures.get(lecCode);
+			} else if(lecCode.equals("0")) {
+				break;
+			} else {
+				System.out.println("일치하는 강의 코드가 없습니다.");
 			}
 		}
-
-		// 일치하는 코드 없을 시 return null
-		System.out.println("일치하는 강의 코드가 없습니다.");
 		return null;
 	}
 
-	// 3.myLecture가 가지고 있는 stdList 출력
+	// 2.myLecture가 가지고 있는 stdList 출력
 	private void getStdList(Lecture lecture) {
-		for (Map.Entry lec : lecture.getSignedStdList().entrySet()) {
-			System.out.println(lec.getValue());
-		}
+		System.out.println(lecture.getLecName() + "강의를 수강하는 학생 명단");
+		System.out.println(lecture.getSignedStdList().values().toString());
 	}
 
-	// 4.stdList에서 성적 입력을 원하는 std 선택
+	// 3.stdList에서 성적 입력을 원하는 std 선택
 	private Student selectStd(Lecture lecture) {
 		System.out.print("성적을 입력할 학생의 학번을 입력하세요: ");
-		String input = scanner.nextLine();
-
+		String stdID = scanner.nextLine();
+		
 		// 일치하는 학번 있을 시 return the student
-		for (Map.Entry lec : lecture.getSignedStdList().entrySet()) {
-			if (lec.getKey().equals(input)) {
-				return (Student) lec.getValue();
-			}
+		if(lecture.getSignedStdList().containsKey(stdID)) {
+			return lecture.getSignedStdList().get(stdID);
+		} else {
+			System.out.println("일치하는 학생의 학번이 없습니다.");
+			return null;
 		}
-
-		// 일치하는 학번 없을 시 return null
-		System.out.println("일치하는 학생의 학번이 없습니다.");
-		return null;
 	}
-
-	// 5-1. std의 성적 입력
-	private void writeStdGrade(Lecture lecture, Student student, int score) {
-		student.getGradeMap().put(lecture.getLecName(), score);
-		// 성적 입력 수정 삭제할 시에 각 과목을 찾는 key로 lecCode 사용
+	
+	// 4-1. std의 성적 입력
+	private void writeStdGrade(Lecture lecture, Student student) {
+		try {
+			System.out.print(student.getName() +" 학생의 성적을 입력하세요: ");
+			int score = Integer.parseInt(scanner.nextLine().trim());
+			
+			//성적의 범위(0~100점) 설정
+			//해당 과목의 학생 성적이 등록되어 있는지 확인
+			if(!(0 <= score && score <= 100)) {
+				System.out.println("올바른 점수의 범위가 아닙니다.");
+				System.out.println("0~100점 사이의 점수 입력");
+			} else {
+				if(student.getGradeMap().containsKey(lecture.getLecName())) {
+					System.out.println("이미 성적을 등록한 학생입니다.");
+				} else {
+					student.getGradeMap().put(lecture.getLecName(), score);	
+					System.out.println(student.getName() + " 학생 성적 입력 완료");					
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 성적을 입력하였습니다.");
+		}
 	}
-
-	// 5-2. std 성적 수정(replace)
-	private void modifyStdGrade(Lecture lecture, Student student, int score) {
-		student.getGradeMap().replace(lecture.getLecName(), score);
+	// 4-2. std 성적 수정
+	private void modifyStdGrade(Lecture lecture, Student student) {
+		try {
+			System.out.print(student.getName() +" 학생의 수정할 성적을 입력하세요: ");
+			int score = Integer.parseInt(scanner.nextLine());
+			
+			//성적의 범위(0~100점) 설정
+			if(!(0 <= score && score <= 100)) {
+				System.out.println("올바른 점수의 범위가 아닙니다.");
+				System.out.println("0~100점 사이의 점수 입력");
+			} else {
+				System.out.printf("%s 학생의 점수가 %d에서 %d로 변경되었습니다.\n",
+									student.getName(),
+									student.getGradeMap().get(lecture.getLecName()),
+									score);
+				student.getGradeMap().replace(lecture.getLecName(), score);
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("잘못된 성적을 입력하였습니다.");
+		}
 	}
-
-	// 5-3. std 성적 삭제(remove)
+	
+	// 4-3. std 성적 삭제(remove)
 	private void delStdGrade(Lecture lecture, Student student) {
-		student.getGradeMap().remove(lecture.getLecName());
-	}
-
-=======
-	}
-
-	// 성적 삭제
-	public void delGrade() {
-		showMyLectures();			         //1.myLectures 조회
-		Lecture lecture = selectMyLecture(); //2.myLecture 선택
-		getStdList(lecture);  				 //3.myLecture가 가지고 있는 stdList 출력
-		Student student = selectStd(lecture);//4.stdList에서 성적 수을 원하는 std 선택
-		delStdGrade(lecture, student);       //5-2.std 성적 삭제
-	}
-	
-	
-	
-	//Template Method(성적 입력,수정,삭제)
-	//성적 처리 방식은 다음의 5단계로 이루어진다.
-	//1.나의 강의 조회
-	//2.나의 강의 선택
-	//3.나의 강의를 수강하는 학생 조회
-	//4.학생 선택
-	//5-1.성적 입력
-	//5-2.성적 수정
-	//5-3.성적 삭제
-
-	
-	//1.myLectures 조회
-	//강의 수가 많을 경우 조회하지 않고 바로 코드 입력하는 곳으로 이동할 수 있는 것도 만들어야??
-	private void showMyLectures() {
-		for(Map.Entry lec : myLectures.entrySet()) {
-			System.out.println(lec.getValue());
-		}
-	}
-	
-	//2.myLecture 선택
-	private Lecture selectMyLecture() {
-		System.out.print("성적 입력을 원하는 강의 코드를 입력하세요: ");
-		String input = scanner.nextLine();
-		
-		//일치하는 코드 있을 시 return the lecture;
-		for(Map.Entry lec : myLectures.entrySet()) {
-			if(lec.getKey().equals(input)) {
-				return (Lecture)lec;
+		try {
+			System.out.println("삭제하시겠습니까?(Y:삭제 / N:보류");
+			String input = scanner.nextLine();
+			
+			if(input.equalsIgnoreCase("Y")) {
+				student.getGradeMap().remove(lecture.getLecName());	
+				System.out.println(student.getName() + " 학생의 성적이 삭제되었습니다.");
+			} else if(input.equalsIgnoreCase("N")) {
+				System.out.println("보류되었습니다.");
+			} else {
+				System.out.println("잘못된 값을 입력하였습니다.");
 			}
-		}
-		
-		//일치하는 코드 없을 시 return null
-		System.out.println("일치하는 강의 코드가 없습니다.");
-		return null;
-	}
-	
-	//3.myLecture가 가지고 있는 stdList 출력
-	private void getStdList(Lecture lecture) {
-		for(Map.Entry lec : lecture.getSignedStdList().entrySet()) {
-			System.out.println(lec.getValue());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
-	//4.stdList에서 성적 입력을 원하는 std 선택
-	private Student selectStd(Lecture lecture) {
-		System.out.print("성적을 입력할 학생의 학번을 입력하세요: ");
-		String input = scanner.nextLine();
-		
-		//일치하는 학번 있을 시 return the student
-		for(Map.Entry lec : lecture.getSignedStdList().entrySet()) {
-			if(lec.getKey().equals(input)) {
-				return (Student)lec.getValue();
-			}
+	// myLectures 조회
+	public void showMyLectures() {
+		System.out.println("==========내 강의 목록==========");
+		for (Lecture lec : myLectures.values()) {
+			System.out.println(lec.toString());
 		}
-		
-		//일치하는 학번 없을 시 return null
-		System.out.println("일치하는 학생의 학번이 없습니다.");
-		return null;
 	}
 	
-	//5-1. std의 성적 입력
-	private void writeStdGrade(Lecture lecture, Student student, int score) {
-		student.getGradeMap().put(lecture.getLecName(), score);
-		//성적 입력 수정 삭제할 시에 각 과목을 찾는 key로 lecCode 사용
-	}
-	
-	//5-2. std 성적 수정(replace)
-	private void modifyStdGrade(Lecture lecture, Student student, int score) {
-		student.getGradeMap().replace(lecture.getLecName(), score);
-	}
-	
-	//5-3. std 성적 삭제(remove)
-	private void delStdGrade(Lecture lecture, Student student) {
-		student.getGradeMap().remove(lecture.getLecName());
+	//getter
+	public Map<String, Lecture> getMyLectures() {
+		return myLectures;
 	}
 
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 	@Override
 	public String toString() {
-		return "교번: " + getRegId() + "\t성명: " + getName()
-		+ "\n주민번호: " + getIdNo()
-		+ "\n소속학과: " + getDept() + "\t전화번호: " + getPhNo()
-		+ "-----------------------";
-<<<<<<< HEAD
+		String profInfo = "교번: " + getRegId()
+						+ "\t성명: " + getName()
+						+ "\t주민번호: " + getIdNo()
+						+ "\t소속학과: " + getDept()
+						+ "\t전화번호: " + getPhNo()
+						+ "\n";
+		return profInfo;
 	}
-	
-	
-=======
-	}	
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 }

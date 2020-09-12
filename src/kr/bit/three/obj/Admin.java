@@ -1,57 +1,54 @@
 package kr.bit.three.obj;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-=======
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-
-<<<<<<< HEAD
-=======
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 public class Admin implements Serializable {
+	
+	public static void main(String[] args) {
+		Admin ram = new Admin();
+		Student std = ram.stdRegister();
+		ram.storeData(std);
+		ram.readData();
+	}
 
 	/**
-	 * 	version 1.00 20-09-08
+	 * 	version 1.00
+	 * 	Created 20-09-08
+	 * 	Updated 20-09-11
 	 * 	@author 안가람
 	 */
-=======
-public class Admin {
-	
-	private List<Student> students;
-	private List<Professor> professors;
-	private List<Lecture> lectures;
-//	private List<Grade> grades;
-	
-	public void stdRegister() {}
-	
-	public void stdModify() {}
-	
-	public void stdLookUp() {}
-	
-	public void profRegister() {}
-	
-	public void profModify() {}
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Scanner input;
-	private Map<String, Student> students;
+	private static Map<String, Student> students;
 	private Map<String, Professor> professors;
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
+	private String path = "C:\\Temp\\StdManagement\\";
+	private String typeCode = "S";
+	
+//	 Singleton pattern
+	private static Admin admin = null;
+	
+	public static Admin getInstance() {
+		if (admin == null) {
+			admin = new Admin();
+		}
+		return admin;
+	}
 	
 	public Admin() {
 		input = new Scanner(System.in);
@@ -60,9 +57,74 @@ public class Admin {
 		lectures = new HashMap<String, Lecture>();
 	}
 
+//----------------------------- 데이터 저장 -----------------------------
+	
+	//학번을 넘겨받아 파일에 데이터 기록
+	private void storeData(PersonalInfo person) {
+		
+		
+		String idToSave = person.getRegId();
+		File fDir = new File(path + typeCode);
+		
+		try {
+				File newFile = new File(path + typeCode + idToSave + ".txt");
+				
+				if (!newFile.exists()) {
+					System.out.println("파일 생성");
+					
+					BufferedWriter bw = new BufferedWriter(new FileWriter(newFile));
+					
+					bw.write(students.get(idToSave).getName() + "\n");
+					bw.write(students.get(idToSave).getRegId() + "\n");
+					bw.write(students.get(idToSave).getDept() + "\n");
+					bw.write(students.get(idToSave).getIdNo() + "\n");
+					bw.write(students.get(idToSave).getPhNo() + "\n");
+					
+					bw.close();
+				} else {
+					System.out.println("이미 존재하는 파일 입니다.");
+					return;
+				}
+				//기록한 데이터 콘솔 출력
+				System.out.println(students.get(idToSave).toString());
+				System.out.println("입력하신 데이터가 저장됐습니다.");
+				return;
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+//----------------------------- 데이터 불러오기 -----------------------------
+	
+	private void readData() {
+		System.out.println("조회하려는 학번 또는 교번을 입력하세요.");
+		String idToRead = input.nextLine().trim();
+		
+		File file = new File(path + typeCode + idToRead + ".txt");
+		
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			
+			String line  = br.readLine();
+			while (line != null) {
+				System.out.println(line);
+				line = br.readLine();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 //---------------------------- 학생 관련 업무 ------------------------------
 
-	public void stdRegister() {
+	public Student stdRegister() {
+		
+		Student stdToReg = null;
+		
 		System.out.println("등록할 학생의 이름 입력 >> ");
 		String name = input.nextLine().trim();
 		
@@ -81,22 +143,22 @@ public class Admin {
 		Student newStd = new Student(name, regId, dept, idNo, phNo);
 		
 		// 등록할 학생의 학번이 이미 있는지 확인 >> Map에서 키가 있는지 조회
-<<<<<<< HEAD
-		if (students.containsKey(regId)) {
-=======
 		if (!students.containsKey(regId)) {
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 			students.put(regId, newStd);
+			stdToReg = newStd;
 		} else {
-			System.out.println("이미 등록된 학생입니다.");
-			return;
+			System.out.println("이미 등록된 학번입니다.");
 		}
+		return stdToReg;
 	}
 	
 	//기존 학생 정보 수정 >> 학과, 전화번호
-	public void stdModify(String regId) {
+	public void stdModify() {
+		System.out.println("수정할 학생의 학번 입력");
+		String regId = input.nextLine().trim();
+		
 		if (students.containsKey(regId)) {
-			
+//			수정할 데이터 고르기 ++++
 			System.out.println("수정하실 학과명을 입력 >> ");
 			String newDept = input.nextLine().trim();
 
@@ -105,11 +167,20 @@ public class Admin {
 			
 			students.get(regId).setDept(newDept);
 			students.get(regId).setPhNo(newPhNo);
+		} else {
+			System.out.println("입력하신 학번이 잘못 됐습니다.");
+			stdModify();
+			return;
+		}
+//		수정 내역 콘솔 출력으로 확인하는 기능
+		for (Student modifiedStd : students.values()) {
+			System.out.println(modifiedStd);
 		}
 	}
 
 	//학생 전체 목록 조회
 	public  void stdLookUp() {
+		System.out.println("전체 학생 목록을 조회합니다.");
 		for (Student eachStd : students.values()) {
 			System.out.println(eachStd.toString());
 		}
@@ -137,11 +208,7 @@ public class Admin {
 		
 		professors = new HashMap<String, Professor>();
 		
-<<<<<<< HEAD
-		if (professors.containsKey(regId)) {
-=======
 		if (!professors.containsKey(regId)) {
->>>>>>> 18a04930881ce0633350018e51928745dd77e3c2
 			professors.put(regId, newProf);
 		} else {
 			System.out.println("이미 등록된 교수입니다.");
@@ -149,9 +216,11 @@ public class Admin {
 		}
 	}
 	
-<<<<<<< HEAD
 	//교수 정보 수정 >> 학과, 전화번호
-	public void profModify(String regId) {
+	public void profModify() {
+		System.out.println("수정할 교수의 교번을 입력");
+		String regId = input.nextLine().trim();
+		
 		if (professors.containsKey(regId)) {
 
 			System.out.println("수정하실 학과명을 입력 >> ");
@@ -162,6 +231,10 @@ public class Admin {
 
 			students.get(regId).setDept(newDept);
 			students.get(regId).setPhNo(newPhNo);
+		} else {
+			System.out.println("입력하신 교번이 존재하지 않습니다.");
+			profModify();
+			return;
 		}
 	}
 
@@ -197,10 +270,21 @@ public class Admin {
 		
 		Lecture newLec = new Lecture(lecCode, lecName, profName, semester, times, maxStd);
 		lectures.put(lecCode, newLec);
+		
+		//Professor 클래스 myLecturs에도 추가
+		for(Professor professor : professors.values()) {
+			if(professor.getName().equals(profName)) {
+				professor.getMyLectures().put(lecCode, newLec);
+			}
+		}
+		
 	}
 
 	// 일부 데이터만 수정할 경우 추가할 것***
-	public void lecModify(String lecCode) {
+	public void lecModify() {
+		System.out.println("수정을 원하는 강의의 코드를 입력하세요.");
+		String lecCode = input.nextLine().trim();
+		
 		if (lectures.containsKey(lecCode)) {
 			
 			System.out.println("수정할 강의명 입력 >> ");
@@ -223,6 +307,10 @@ public class Admin {
 			lectures.get(lecCode).setSemester(semester);
 			lectures.get(lecCode).setTimes(times);
 			lectures.get(lecCode).setMaxStd(maxStd);
+		} else {
+			System.out.println("입력하신 강의코드가 잘못 됐습니다.");
+			lecModify();
+			return;
 		}
 	}
 
@@ -235,8 +323,12 @@ public class Admin {
 	public static Map<String, Lecture> getLectures() {
 		return lectures;
 	}
-=======
+	public Map<String, Student> getStudents() {
+		return students;
+	}
+	public Map<String, Professor> getProfessors() {
+		return professors;
+	}
 	
 	
->>>>>>> e34ffe28d99a08c31cc1849132b1bc4eed229e73
 }
