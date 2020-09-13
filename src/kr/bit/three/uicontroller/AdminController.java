@@ -55,13 +55,11 @@ Loop_2 :while(true) {
 				lib.cls();
 				admin.setTypeCode("S");
 				admin.storeData(admin.stdRegister());
-				System.out.println("학생 정보가 등록되었습니다.");
 				lib.cls();
 			}else if(input.equals("2")) { //학생정보 수정
 				lib.cls();
 				admin.setTypeCode("S");
 				admin.editData(admin.stdModify());
-				System.out.println("학생 정보가 수정되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //전체 학생정보 조회
 				lib.cls();
