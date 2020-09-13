@@ -93,7 +93,7 @@ Loop_3 :while(true) {
 				lib.cls();
 			}else if(input.equals("2")) {//교수정보 수정
 				lib.cls();
-				admin.profModify();
+				admin.editData(admin.profModify());
 				System.out.println("교수 정보가 수정되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //전체 교수정보 조회

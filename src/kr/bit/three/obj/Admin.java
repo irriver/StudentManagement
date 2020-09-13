@@ -256,12 +256,16 @@ public class Admin implements Serializable {
 			profToReg = newProf;
 		} else {
 			System.out.println("이미 등록된 교수입니다.");
+			profModify();
 		}
 		return newProf;
 	}
 
 	// 교수 정보 수정 >> 학과, 전화번호
-	public void profModify() {
+	public Professor profModify() {
+		
+		Professor modifiedProf = null;
+		
 		System.out.println("수정할 교수의 교번을 입력");
 		String regId = input.nextLine().trim();
 
@@ -273,13 +277,15 @@ public class Admin implements Serializable {
 			System.out.println("수정하실 전화번호를 입력 >> ");
 			String newPhNo = input.nextLine().trim();
 
-			students.get(regId).setDept(newDept);
-			students.get(regId).setPhNo(newPhNo);
+			professors.get(regId).setDept(newDept);
+			professors.get(regId).setPhNo(newPhNo);
+			
+			modifiedProf = professors.get(regId);
 		} else {
 			System.out.println("입력하신 교번이 존재하지 않습니다.");
 			profModify();
-			return;
 		}
+		return modifiedProf;
 	}
 
 	// 교수 전체 목록 출력
