@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -37,7 +38,7 @@ public class Admin implements Serializable {
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
 	private String path = "C:\\Temp\\StdManagement\\";
-	private String typeCode = "S";
+	private String typeCode;
 
 //	 Singleton pattern
 	private static Admin admin = null;
@@ -56,12 +57,17 @@ public class Admin implements Serializable {
 		lectures = new HashMap<String, Lecture>();
 	}
 
+	public void setTypeCode(String typeCode) {
+		this.typeCode = typeCode;
+	}
+
 //----------------------------- 데이터 저장 -----------------------------
 
 	// 학번을 넘겨받아 파일에 데이터 기록
-	public void storeData(PersonalInfo person) {
-
-		String idToSave = person.getRegId();
+	public void storeData(Student student) {
+//			인자로 들어와야 하는 타입:
+//			HashMap<Students>, HashMap<Professor>, HashMap<Lectures>
+		String idToSave = student.getRegId();
 		File fDir = new File(path + typeCode);
 
 		try {
@@ -70,6 +76,7 @@ public class Admin implements Serializable {
 			if (!newFile.exists()) {
 				BufferedWriter bw = new BufferedWriter(new FileWriter(newFile));
 
+				// professors는 어떻게??
 				bw.write(students.get(idToSave).getName() + ",");
 				bw.write(students.get(idToSave).getRegId() + ",");
 				bw.write(students.get(idToSave).getDept() + ",");
@@ -92,10 +99,77 @@ public class Admin implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
+	public void storeData(Professor professor) {
+		String idToSave = professor.getRegId();
+		File fDir = new File(path + typeCode);
+
+		try {
+			File newFile = new File(path + typeCode + idToSave + ".txt");
+
+			if (!newFile.exists()) {
+				BufferedWriter bw = new BufferedWriter(new FileWriter(newFile));
+
+				bw.write(professors.get(idToSave).getName() + ",");
+				bw.write(professors.get(idToSave).getRegId() + ",");
+				bw.write(professors.get(idToSave).getDept() + ",");
+				bw.write(professors.get(idToSave).getIdNo() + ",");
+				bw.write(professors.get(idToSave).getPhNo());
+
+				bw.close();
+			} else {
+				System.out.println("이미 존재하는 파일 입니다.");
+				return;
+			}
+			// 기록한 데이터 콘솔 출력
+			System.out.println(professors.get(idToSave).toString());
+			System.out.println("입력하신 데이터가 저장됐습니다.");
+			return;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void storeData(Lecture lecture) {
+		String idToSave = lecture.getLecCode();
+		File fDir = new File(path + typeCode);
+
+		try {
+			File newFile = new File(path + typeCode + idToSave + ".txt");
+
+			if (!newFile.exists()) {
+				BufferedWriter bw = new BufferedWriter(new FileWriter(newFile));
+
+				bw.write(lectures.get(idToSave).getLecName() + ",");
+				bw.write(lectures.get(idToSave).getProfName() + ",");
+				bw.write(lectures.get(idToSave).getSemester() + ",");
+				bw.write(lectures.get(idToSave).getTimes() + ",");
+				bw.write(lectures.get(idToSave).getMaxStd() + ",");
+				bw.write(lectures.get(idToSave).getSignedStdList().toString());
+
+				bw.close();
+			} else {
+				System.out.println("이미 존재하는 파일 입니다.");
+				return;
+			}
+			// 기록한 데이터 콘솔 출력
+			System.out.println(lectures.get(idToSave).toString());
+			System.out.println("입력하신 데이터가 저장됐습니다.");
+			return;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 //----------------------------- 데이터 수정 -----------------------------
 
-	public void editData(PersonalInfo person) {
-		String key = person.getRegId();
+	public void editData(Student student) {
+		String key = student.getRegId();
 		File file = new File(path + typeCode + key + ".txt");
 
 		try {
@@ -125,25 +199,80 @@ public class Admin implements Serializable {
 		}
 	}
 
-//----------------------------- 데이터 불러오기 -----------------------------
-
-	public void readData() {
-		System.out.println("조회하려는 학번 또는 교번을 입력하세요.");
-		String idToRead = input.nextLine().trim();
-
-		File file = new File(path + typeCode + idToRead + ".txt");
+	public void editData(Professor professor) {
+		String key = professor.getRegId();
+		File file = new File(path + typeCode + key + ".txt");
 
 		try {
+			if (file.exists()) {
+				BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
 
+				bw.write(professors.get(key).getName() + ",");
+				bw.write(professors.get(key).getRegId() + ",");
+				bw.write(professors.get(key).getDept() + ",");
+				bw.write(professors.get(key).getIdNo() + ",");
+				bw.write(professors.get(key).getPhNo());
+
+				bw.close();
+			} else {
+				System.out.println("수정하려는 파일이 존재하지 않습니다.");
+				return;
+			}
+			// 기록한 데이터 콘솔 출력
+			System.out.println(professors.get(key).toString());
+//			System.out.println("입력하신 데이터가 수정됐습니다.");
+			return;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void editData(Lecture lecture) {
+		String key = lecture.getLecCode();
+		File file = new File(path + typeCode + key + ".txt");
+
+		try {
+			if (file.exists()) {
+				BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+
+				bw.write(lectures.get(key).getLecName() + ",");
+				bw.write(lectures.get(key).getProfName() + ",");
+				bw.write(lectures.get(key).getSemester() + ",");
+				bw.write(lectures.get(key).getTimes() + ",");
+				bw.write(lectures.get(key).getMaxStd() + ",");
+				bw.write(lectures.get(key).getSignedStdList().toString());
+
+				bw.close();
+			} else {
+				System.out.println("수정하려는 파일이 존재하지 않습니다.");
+				return;
+			}
+			// 기록한 데이터 콘솔 출력
+			System.out.println(lectures.get(key).toString());
+//			System.out.println("입력하신 데이터가 수정됐습니다.");
+			return;
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+//----------------------------- 데이터 불러오기 -----------------------------
+
+	public void readData(File file) {
+		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 
 			String line = br.readLine();
 			while (line != null) {
-
 				System.out.println(line);
 				line = br.readLine();
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -200,6 +329,7 @@ public class Admin implements Serializable {
 			students.get(regId).setPhNo(newPhNo);
 
 			modifiedStd = students.get(regId);
+			students.put(regId, modifiedStd);
 
 		} else {
 			System.out.println("입력하신 학번이 잘못 됐습니다.");
@@ -218,17 +348,38 @@ public class Admin implements Serializable {
 	 * file.getName().subString(1).replaceAll(".txt", "");
 	 * System.out.println(students.get(key).toString()); }//폴더 내의 모든 파일 출력 }
 	 */
+	
 	// 학생 전체 목록 조회
-	public void stdLookUp() {
-		System.out.println("전체 학생 목록을 조회합니다.");
-		for (Student eachStd : students.values()) {
-			System.out.println(eachStd.toString());
+	public void print() { // 폴더 내의 파일 iterator
+		String pattern = this.typeCode;
+		
+		String fileList[] = new File(path).list(new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.startsWith(typeCode);
+			}
+		});
+		// file <- [typeCode-rigId.txt] <-no,name,dpt,idno,phno String key;
+		
+		for (String fileName : fileList) {
+			//버퍼리더로  텍파 한 줄씩 읽어들이기 -> 읽으면서 구분자 ,를 스페이스로 바꾸고 윗 줄에 변수명 출력
+			readData(new File(path + fileName));
 		}
+		
+		/*
+		 * public void stdLookUp() { System.out.println("전체 학생 목록을 조회합니다."); for
+		 * (Student eachStd : students.values()) {
+		 * System.out.println(eachStd.toString()); }
+		 */
 	}
 
 //---------------------------- 교수 관련 업무 ------------------------------
 
-	public void profRegister() {
+	public Professor profRegister() {
+
+		Professor profToReg = null;
+
 		System.out.println("등록할 교수의 이름 입력 >> ");
 		String name = input.nextLine().trim();
 
@@ -241,7 +392,7 @@ public class Admin implements Serializable {
 		System.out.println("등록할 교수의 주민 번호 입력 >> ");
 		String idNo = input.nextLine().trim();
 
-		System.out.println("등록할 학생의 전화번호 입력 >> ");
+		System.out.println("등록할 교수의 전화번호 입력 >> ");
 		String phNo = input.nextLine().trim();
 
 		Professor newProf = new Professor(name, regId, dept, idNo, phNo);
@@ -250,14 +401,19 @@ public class Admin implements Serializable {
 
 		if (!professors.containsKey(regId)) {
 			professors.put(regId, newProf);
+			profToReg = newProf;
 		} else {
 			System.out.println("이미 등록된 교수입니다.");
-			return;
+			profModify();
 		}
+		return newProf;
 	}
 
 	// 교수 정보 수정 >> 학과, 전화번호
-	public void profModify() {
+	public Professor profModify() {
+
+		Professor modifiedProf = null;
+
 		System.out.println("수정할 교수의 교번을 입력");
 		String regId = input.nextLine().trim();
 
@@ -269,17 +425,21 @@ public class Admin implements Serializable {
 			System.out.println("수정하실 전화번호를 입력 >> ");
 			String newPhNo = input.nextLine().trim();
 
-			students.get(regId).setDept(newDept);
-			students.get(regId).setPhNo(newPhNo);
+			professors.get(regId).setDept(newDept);
+			professors.get(regId).setPhNo(newPhNo);
+
+			modifiedProf = professors.get(regId);
+			professors.put(regId, modifiedProf);
 		} else {
 			System.out.println("입력하신 교번이 존재하지 않습니다.");
 			profModify();
-			return;
 		}
+		return modifiedProf;
 	}
 
 	// 교수 전체 목록 출력
 	public void profLookUp() {
+		System.out.println("전체 교수 목록을 조회합니다.");
 		for (Professor eachProf : professors.values()) {
 			System.out.println(eachProf.toString());
 		}
@@ -287,7 +447,8 @@ public class Admin implements Serializable {
 
 	// ---------------------------- 강의 관련 업무 ------------------------------
 
-	public void lecRegister() {
+	public Lecture lecRegister() {
+		Lecture regLecture = null;
 
 		// 강의는 동일 강좌가 개설될 수 있으므로 중복 체크 하지 않음
 		System.out.println("등록할 강의의 등록 코드 입력 >> ");
@@ -311,17 +472,21 @@ public class Admin implements Serializable {
 		Lecture newLec = new Lecture(lecCode, lecName, profName, semester, times, maxStd);
 		lectures.put(lecCode, newLec);
 
+		regLecture = newLec;
 		// Professor 클래스 myLecturs에도 추가
 		for (Professor professor : professors.values()) {
 			if (professor.getName().equals(profName)) {
 				professor.getMyLectures().put(lecCode, newLec);
 			}
 		}
+		return regLecture;
 
 	}
 
 	// 일부 데이터만 수정할 경우 추가할 것***
-	public void lecModify() {
+	public Lecture lecModify() {
+		Lecture modifiedLec = null;
+
 		System.out.println("수정을 원하는 강의의 코드를 입력하세요.");
 		String lecCode = input.nextLine().trim();
 
@@ -347,11 +512,14 @@ public class Admin implements Serializable {
 			lectures.get(lecCode).setSemester(semester);
 			lectures.get(lecCode).setTimes(times);
 			lectures.get(lecCode).setMaxStd(maxStd);
+
+			modifiedLec = lectures.get(lecCode);
+			lectures.put(lecCode, modifiedLec);
 		} else {
 			System.out.println("입력하신 강의코드가 잘못 됐습니다.");
 			lecModify();
-			return;
 		}
+		return modifiedLec;
 	}
 
 	public static void lecLookUp() {
