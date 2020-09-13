@@ -1,6 +1,14 @@
 package kr.bit.three.obj;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Professor extends PersonalInfo implements Serializable {
@@ -97,8 +105,8 @@ public class Professor extends PersonalInfo implements Serializable {
 			String lecCode = scanner.nextLine();
 			
 			// 일치하는 코드 있을 시 return the lecture;
-			if(getMyLectures().containsKey(lecCode)) {
-				return getMyLectures().get(lecCode);
+			if(loadMyLectures().containsKey(lecCode)) {
+				return loadMyLectures().get(lecCode);
 			} else if(lecCode.equals("0")) {
 				break;
 			} else {
@@ -144,7 +152,8 @@ public class Professor extends PersonalInfo implements Serializable {
 					System.out.println("이미 성적을 등록한 학생입니다.");
 				} else {
 					student.getGradeMap().put(lecture.getLecName(), score);	
-					System.out.println(student.getName() + " 학생 성적 입력 완료");					
+					System.out.println(student.getName() + " 학생 성적 입력 완료");
+					student.saveMyGrades();
 				}
 			}
 		} catch (Exception e) {
@@ -168,7 +177,7 @@ public class Professor extends PersonalInfo implements Serializable {
 									student.getGradeMap().get(lecture.getLecName()),
 									score);
 				student.getGradeMap().replace(lecture.getLecName(), score);
-				
+				student.saveMyGrades();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -185,6 +194,7 @@ public class Professor extends PersonalInfo implements Serializable {
 			if(input.equalsIgnoreCase("Y")) {
 				student.getGradeMap().remove(lecture.getLecName());	
 				System.out.println(student.getName() + " 학생의 성적이 삭제되었습니다.");
+				student.saveMyGrades();
 			} else if(input.equalsIgnoreCase("N")) {
 				System.out.println("보류되었습니다.");
 			} else {
@@ -198,9 +208,53 @@ public class Professor extends PersonalInfo implements Serializable {
 	// myLectures 조회
 	public void showMyLectures() {
 		System.out.println("==========내 강의 목록==========");
-		for (Lecture lec : getMyLectures().values()) {
+		for (Lecture lec : loadMyLectures().values()) {
 			System.out.println(lec.toString());
 		}
+	}
+	
+	//myLectures 데이터 save(직렬화)
+	public void saveMyLectures() {
+		File file = new File("/Users/sungyujeon/ProjectData/" + getRegId() + ".txt");
+
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(getMyLectures());
+			
+			oos.close();
+			fos.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("profMyLectures 저장 완료");
+	}
+	
+	//myLectures 데이터 load(역직렬화)
+	private HashMap<String, Lecture> loadMyLectures() {
+		FileInputStream fis = null;
+		ObjectInputStream oos = null;
+		HashMap<String, Lecture> data = null;
+		
+		try{
+			File file = new File("/Users/sungyujeon/ProjectData/" + getRegId() + ".txt");
+			fis = new FileInputStream(file);
+			oos = new ObjectInputStream(fis);
+			data = (HashMap)oos.readObject();
+		}catch(Exception e){
+			System.out.println("불러오는 데 실패하였습니다.");
+			e.printStackTrace();
+		}finally {
+			try {
+				oos.close();
+				fis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return data;
 	}
 	
 	//getter

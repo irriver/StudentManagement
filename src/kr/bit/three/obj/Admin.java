@@ -476,6 +476,7 @@ public class Admin implements Serializable {
 		for (Professor professor : professors.values()) {
 			if (professor.getName().equals(profName)) {
 				professor.getMyLectures().put(lecCode, newLec);
+				professor.saveMyLectures();
 			}
 		}
 		return regLecture;
