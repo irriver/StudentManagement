@@ -43,12 +43,10 @@ Loop_1 :while(true) {
 			if(input.equals("1")) { //수강 신청
 				lib.cls();
 				student.signUpLecture(student);
-				System.out.println("수강 신청이 완료되었습니다.");
 				lib.cls();
 			}else if(input.equals("2")) { //수강 취소
 				lib.cls();
 				student.dropLecture(student);
-				System.out.println("수강 취소가 완료되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //성적 조회
 				lib.cls();

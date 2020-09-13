@@ -55,12 +55,10 @@ Loop_2 :while(true) {
 			if(input.equals("1")) { //학생정보 등록
 				lib.cls();
 				admin.storeData(admin.stdRegister());
-				System.out.println("학생 정보가 등록되었습니다.");
 				lib.cls();
 			}else if(input.equals("2")) { //학생정보 수정
 				lib.cls();
 				admin.editData(admin.stdModify());
-				System.out.println("학생 정보가 수정되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //전체 학생정보 조회
 				lib.cls();
@@ -134,7 +132,7 @@ Loop_4 :while(true) {
 //			lib.cls();
 //			System.out.println("강의 정보를 삭제하였습니다.");
 //			lib.cls();
-			}else if(input.equals("4")) { //강의 조회
+			}else if(input.equals("3")) { //강의 조회
 				lib.cls();
 				admin.print();
 				System.out.println("강의 정보를 조회하였습니다.");

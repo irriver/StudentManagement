@@ -3,13 +3,11 @@ package kr.bit.three.obj;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +35,7 @@ public class Admin implements Serializable {
 	private Map<String, Professor> professors;
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
+	//private String path = "C:\\Temp\\StdManagement\\";
 	private String path = "C:\\Temp\\StdManagement\\";
 	private String typeCode;
 
@@ -477,6 +476,7 @@ public class Admin implements Serializable {
 		for (Professor professor : professors.values()) {
 			if (professor.getName().equals(profName)) {
 				professor.getMyLectures().put(lecCode, newLec);
+				professor.saveMyLectures();
 			}
 		}
 		return regLecture;
