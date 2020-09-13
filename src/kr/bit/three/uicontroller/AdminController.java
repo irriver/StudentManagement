@@ -53,6 +53,7 @@ Loop_2 :while(true) {
 			input = admin_ui.manageStudent();
 			if(input.equals("1")) { //학생정보 등록
 				lib.cls();
+				admin.setTypeCode("S");
 				admin.storeData(admin.stdRegister());
 				System.out.println("학생 정보가 등록되었습니다.");
 				lib.cls();
@@ -88,6 +89,7 @@ Loop_3 :while(true) {
 			input = admin_ui.manageProfessor();
 			if(input.equals("1")) { //교수정보 등록
 				lib.cls();
+				admin.setTypeCode("P");
 				admin.storeData(admin.profRegister());
 				System.out.println("교수 정보가 등록되었습니다.");
 				lib.cls();
@@ -119,6 +121,7 @@ Loop_4 :while(true) {
 			input = admin_ui.manageSubject();
 			if(input.equals("1")) { //강의 개설
 				lib.cls();
+				admin.setTypeCode("L");
 				admin.lecRegister();
 				System.out.println("강의를 개설하였습니다.");
 				lib.cls();

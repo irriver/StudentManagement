@@ -37,7 +37,7 @@ public class Admin implements Serializable {
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
 	private String path = "C:\\Temp\\StdManagement\\";
-	private String typeCode = "S";
+	private String typeCode;
 
 //	 Singleton pattern
 	private static Admin admin = null;
@@ -56,6 +56,10 @@ public class Admin implements Serializable {
 		lectures = new HashMap<String, Lecture>();
 	}
 
+	public void setTypeCode(String typeCode) {
+		this.typeCode = typeCode;
+	}
+	
 //----------------------------- 데이터 저장 -----------------------------
 
 	// 학번을 넘겨받아 파일에 데이터 기록
