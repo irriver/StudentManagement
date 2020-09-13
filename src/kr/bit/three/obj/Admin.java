@@ -228,7 +228,10 @@ public class Admin implements Serializable {
 
 //---------------------------- 교수 관련 업무 ------------------------------
 
-	public void profRegister() {
+	public Professor profRegister() {
+		
+		Professor profToReg = null;
+		
 		System.out.println("등록할 교수의 이름 입력 >> ");
 		String name = input.nextLine().trim();
 
@@ -250,10 +253,11 @@ public class Admin implements Serializable {
 
 		if (!professors.containsKey(regId)) {
 			professors.put(regId, newProf);
+			profToReg = newProf;
 		} else {
 			System.out.println("이미 등록된 교수입니다.");
-			return;
 		}
+		return newProf;
 	}
 
 	// 교수 정보 수정 >> 학과, 전화번호

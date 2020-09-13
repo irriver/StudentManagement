@@ -88,7 +88,7 @@ Loop_3 :while(true) {
 			input = admin_ui.manageProfessor();
 			if(input.equals("1")) { //교수정보 등록
 				lib.cls();
-				admin.profRegister();
+				admin.storeData(admin.profRegister());
 				System.out.println("교수 정보가 등록되었습니다.");
 				lib.cls();
 			}else if(input.equals("2")) {//교수정보 수정
