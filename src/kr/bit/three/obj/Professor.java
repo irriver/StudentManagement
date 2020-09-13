@@ -205,7 +205,7 @@ public class Professor extends PersonalInfo implements Serializable {
 	
 	//getter
 	public Map<String, Lecture> getMyLectures() {
-		return getMyLectures();
+		return super.getMyLectures();
 	}
 
 	@Override
