@@ -59,12 +59,13 @@ Loop_2 :while(true) {
 				lib.cls();
 			}else if(input.equals("2")) { //학생정보 수정
 				lib.cls();
+				admin.setTypeCode("S");
 				admin.editData(admin.stdModify());
 				System.out.println("학생 정보가 수정되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //전체 학생정보 조회
 				lib.cls();
-				admin.stdLookUp();
+				admin.print();
 				System.out.println("전체 학생정보를 조회하였습니다.");
 				lib.cls();
 //		}else if(input.equals("4")) { //강의 수강 학생 조회
@@ -95,6 +96,7 @@ Loop_3 :while(true) {
 				lib.cls();
 			}else if(input.equals("2")) {//교수정보 수정
 				lib.cls();
+				admin.setTypeCode("P");
 				admin.editData(admin.profModify());
 				System.out.println("교수 정보가 수정되었습니다.");
 				lib.cls();
@@ -122,12 +124,12 @@ Loop_4 :while(true) {
 			if(input.equals("1")) { //강의 개설
 				lib.cls();
 				admin.setTypeCode("L");
-				admin.lecRegister();
+				admin.storeData(admin.lecRegister());
 				System.out.println("강의를 개설하였습니다.");
 				lib.cls();
 			}else if(input.equals("2")) {//강의 수정
 				lib.cls();
-				admin.lecModify();
+				admin.editData(admin.lecModify());
 				System.out.println("강의 정보를 수정하였습니다.");
 				lib.cls();
 //		}else if(input.equals("3")) { //강의 삭제
