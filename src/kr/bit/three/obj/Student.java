@@ -82,7 +82,7 @@ public class Student extends PersonalInfo implements Serializable {
 	
 	//myGrades 데이터 save(직렬화)
 	public void saveMyGrades() {
-		File file = new File("/Users/sungyujeon/ProjectData/" + getRegId() + ".txt");
+		File file = new File("C:\\Temp\\StdManagement\\" + getRegId() + ".txt");
 
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
@@ -106,7 +106,7 @@ public class Student extends PersonalInfo implements Serializable {
 		HashMap<String, Integer> data = null;
 		
 		try{
-			File file = new File("/Users/sungyujeon/ProjectData/" + getRegId() + ".txt");
+			File file = new File("C:\\Temp\\StdManagement\\" + getRegId() + ".txt");
 			fis = new FileInputStream(file);
 			oos = new ObjectInputStream(fis);
 			data = (HashMap)oos.readObject();

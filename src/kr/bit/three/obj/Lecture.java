@@ -61,7 +61,7 @@ public class Lecture implements Serializable {
 	
 	//signedStdList 데이터 save(직렬화)
 	private void saveSignedStdList() {
-		File file = new File("/Users/sungyujeon/ProjectData/" + lecCode + ".txt");
+		File file = new File("C:\\Temp\\StdManagement\\" + lecCode + ".txt");
 
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
@@ -85,7 +85,7 @@ public class Lecture implements Serializable {
 		HashMap<String, Student> data = null;
 		
 		try{
-			File file = new File("/Users/sungyujeon/ProjectData/" + lecCode + ".txt");
+			File file = new File("C:\\Temp\\StdManagement\\" + lecCode + ".txt");
 			fis = new FileInputStream(file);
 			oos = new ObjectInputStream(fis);
 			data = (HashMap)oos.readObject();

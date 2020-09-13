@@ -215,7 +215,7 @@ public class Professor extends PersonalInfo implements Serializable {
 	
 	//myLectures 데이터 save(직렬화)
 	public void saveMyLectures() {
-		File file = new File("/Users/sungyujeon/ProjectData/" + getRegId() + ".txt");
+		File file = new File("C:\\Temp\\StdManagement\\" + getRegId() + ".txt");
 
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
@@ -239,7 +239,7 @@ public class Professor extends PersonalInfo implements Serializable {
 		HashMap<String, Lecture> data = null;
 		
 		try{
-			File file = new File("/Users/sungyujeon/ProjectData/" + getRegId() + ".txt");
+			File file = new File("C:\\Temp\\StdManagement\\" + getRegId() + ".txt");
 			fis = new FileInputStream(file);
 			oos = new ObjectInputStream(fis);
 			data = (HashMap)oos.readObject();

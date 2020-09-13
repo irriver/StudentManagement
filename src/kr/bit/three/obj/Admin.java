@@ -36,7 +36,7 @@ public class Admin implements Serializable {
 	private static Map<String, Lecture> lectures;
 //	private List<Grade> grades;
 	//private String path = "C:\\Temp\\StdManagement\\";
-	private String path = "/Users/sungyujeon/ProjectData/";
+	private String path = "C:\\Temp\\StdManagement\\";
 	private String typeCode;
 
 //	 Singleton pattern
