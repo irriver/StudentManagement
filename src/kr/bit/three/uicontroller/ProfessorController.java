@@ -30,7 +30,7 @@ public class ProfessorController {
 			if(admin.getProfessors().containsKey(profID)) {
 				break;
 			} else if(profID.equals("0")) {
-				break;
+				return;
 			} else {
 				System.out.println("일치하는 교번의 교수가 없습니다.");
 				System.out.println("다시 입력하여 주십시오.");
