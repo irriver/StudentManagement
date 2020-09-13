@@ -104,62 +104,22 @@ public class Lecture implements Serializable {
 	}
 
 	// getter
-	public String getLecCode() {
-		return lecCode;
-	}
-
-	public String getLecName() {
-		return lecName;
-	}
-
-	public Map<String, Student> getSignedStdList() {
-		return signedStdList;
-	}
-
-	public String getProfName() {
-		return profName;
-	}
-
-	public int getTimes() {
-		return times;
-	}
-
-	public String getSemester() {
-		return semester;
-	}
-
-	public int getMaxStd() {
-		return maxStd;
-	}
-
+	public String getLecCode() { return lecCode; }
+	public String getLecName() { return lecName; }
+	public Map<String, Student> getSignedStdList() { return signedStdList; }
+	public String getProfName() { return profName; }
+	public int getTimes() { return times; }
+	public String getSemester() { return semester; }
+	public int getMaxStd() { return maxStd; }
+	
 	// setter
-	public void setLecName(String lecName) {
-		this.lecName = lecName;
-	}
-
-	public void setLecCode(String lecCode) {
-		this.lecCode = lecCode;
-	}
-
-	public void setProfName(String profName) {
-		this.profName = profName;
-	}
-
-	public void setTimes(int times) {
-		this.times = times;
-	}
-
-	public void setSemester(String semester) {
-		this.semester = semester;
-	}
-
-	public void setMaxStd(int maxStd) {
-		this.maxStd = maxStd;
-	}
-
-	public void setSignedStdList(Map<String, Student> signedStdList) {
-		this.signedStdList = signedStdList;
-	}
+	public void setLecName(String lecName) { this.lecName = lecName; }
+	public void setLecCode(String lecCode) { this.lecCode = lecCode; }
+	public void setProfName(String profName) { this.profName = profName; }
+	public void setTimes(int times) { this.times = times; }
+	public void setSemester(String semester) { this.semester = semester; }
+	public void setMaxStd(int maxStd) { this.maxStd = maxStd; }
+	public void setSignedStdList(Map<String, Student> signedStdList) { this.signedStdList = signedStdList; }
 	
 	@Override
 	public String toString() {

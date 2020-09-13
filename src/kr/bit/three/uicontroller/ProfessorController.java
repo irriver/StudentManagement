@@ -43,7 +43,6 @@ Loop_1 :while(true) {
 			if(input.equals("1")) { //내 강의 목록 조회
 				lib.cls();
 				prof.showMyLectures();
-				System.out.println("내 강의 목록을 조회하였습니다.");
 				lib.cls();
 			}else if(input.equals("2")) { //성적 등록
 				lib.cls();
