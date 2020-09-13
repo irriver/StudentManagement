@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -263,23 +264,15 @@ public class Admin implements Serializable {
 
 //----------------------------- 데이터 불러오기 -----------------------------
 
-	public void readData() {
-		System.out.println("조회하려는 학번 또는 교번을 입력하세요.");
-		String idToRead = input.nextLine().trim();
-
-		File file = new File(path + typeCode + idToRead + ".txt");
-
+	public void readData(File file) {
 		try {
-
 			BufferedReader br = new BufferedReader(new FileReader(file));
 
 			String line = br.readLine();
 			while (line != null) {
-
 				System.out.println(line);
 				line = br.readLine();
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -357,11 +350,22 @@ public class Admin implements Serializable {
 	
 	// 학생 전체 목록 조회
 	public void print() { // 폴더 내의 파일 iterator
-		File[] files = new File(path).listFiles(); // file <- [typeCode-rigId.txt] <-no,name,dpt,idno,phno String key;
-		for (File file : files) {
+		String pattern = this.typeCode;
+		
+		String fileList[] = new File(path).list(new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.startsWith(typeCode);
+			}
+		});
+		// file <- [typeCode-rigId.txt] <-no,name,dpt,idno,phno String key;
+		
+		for (String fileName : fileList) {
 			//버퍼리더로  텍파 한 줄씩 읽어들이기 -> 읽으면서 구분자 ,를 스페이스로 바꾸고 윗 줄에 변수명 출력
-		} // 폴더 내의 모든 파일 출력 }
-
+			readData(new File(path + fileName));
+		}
+		
 		/*
 		 * public void stdLookUp() { System.out.println("전체 학생 목록을 조회합니다."); for
 		 * (Student eachStd : students.values()) {
