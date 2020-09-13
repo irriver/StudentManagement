@@ -25,12 +25,12 @@ public class MainController{
 			if(input.equals("1")) { //학생 계정 선택
 				lib.cls();
 				student_c.studentMethod(); //학생 화면 출력
-			}else if(input.equals("2")) {//교수 계정 선택
+			}else if(input.equals("2")) {  //교수 계정 선택
 				lib.cls();
 				professor_c.professorMethod(); //교수 화면 출력
-			}else if(input.equals("3")) { //관리자 계정 선택
+			}else if(input.equals("3")) {      //관리자 계정 선택
 				lib.cls();
-				admin_c.adminMethod();//관리자 계정 출력
+				admin_c.adminMethod();    //관리자 계정 출력
 			}else if(input.equals("4")) { //시스템 종료
 				System.exit(0);
 			}else {

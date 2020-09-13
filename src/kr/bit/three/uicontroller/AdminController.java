@@ -22,17 +22,14 @@ Loop_1 :while(true) {
 			input = admin_ui.adminUi();
 			if(input.equals("1")) { //학생 관리 선택
 				lib.cls();
-				System.out.println("학생 관리 페이지입니다.");
 				adminStudentMethod(admin);
 				lib.cls();
-			}else if(input.equals("2")) {//교수 관리 선택
+			}else if(input.equals("2")) { //교수 관리 선택
 				lib.cls();
-				System.out.println("교수 관리 페이지입니다.");
 				adminProfessorMethod(admin);
 				lib.cls();
 			}else if(input.equals("3")) { //강의 관리 선택
 				lib.cls();
-				System.out.println("강의 관리 페이지입니다.");
 				adminSubjectMethod(admin);
 				lib.cls();
 			}else if(input.equals("0")) { //이전메뉴
@@ -63,12 +60,7 @@ Loop_2 :while(true) {
 			}else if(input.equals("3")) { //전체 학생정보 조회
 				lib.cls();
 				admin.print();
-				System.out.println("전체 학생정보를 조회하였습니다.");
 				lib.cls();
-//		}else if(input.equals("4")) { //강의 수강 학생 조회
-//			lib.cls();
-//			System.out.println("강의 수강 학생 정보를 조회하였습니다.");
-//			lib.cls();
 			}else if(input.equals("0")) { //이전메뉴
 				lib.cls();
 				System.out.println("이전 화면으로 돌아갑니다.");
@@ -89,17 +81,14 @@ Loop_3 :while(true) {
 			if(input.equals("1")) { //교수정보 등록
 				lib.cls();
 				admin.storeData(admin.profRegister());
-				System.out.println("교수 정보가 등록되었습니다.");
 				lib.cls();
-			}else if(input.equals("2")) {//교수정보 수정
+			}else if(input.equals("2")) { //교수정보 수정
 				lib.cls();
 				admin.editData(admin.profModify());
-				System.out.println("교수 정보가 수정되었습니다.");
 				lib.cls();
 			}else if(input.equals("3")) { //전체 교수정보 조회
 				lib.cls();
 				admin.print();
-				System.out.println("교수 정보를 조회하였습니다.");
 				lib.cls();
 			}else if(input.equals("0")) { //이전메뉴
 				lib.cls();
@@ -121,21 +110,14 @@ Loop_4 :while(true) {
 			if(input.equals("1")) { //강의 개설
 				lib.cls();
 				admin.storeData(admin.lecRegister());
-				System.out.println("강의를 개설하였습니다.");
 				lib.cls();
-			}else if(input.equals("2")) {//강의 수정
+			}else if(input.equals("2")) { //강의 수정
 				lib.cls();
 				admin.editData(admin.lecModify());
-				System.out.println("강의 정보를 수정하였습니다.");
 				lib.cls();
-//		}else if(input.equals("3")) { //강의 삭제
-//			lib.cls();
-//			System.out.println("강의 정보를 삭제하였습니다.");
-//			lib.cls();
 			}else if(input.equals("3")) { //강의 조회
 				lib.cls();
 				admin.print();
-				System.out.println("강의 정보를 조회하였습니다.");
 				lib.cls();
 			}else if(input.equals("0")) { //이전메뉴
 				lib.cls();

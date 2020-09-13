@@ -51,17 +51,14 @@ Loop_1 :while(true) {
 			}else if(input.equals("3")) { //성적 조회
 				lib.cls();
 				student.checkGrade();
-				System.out.println("성적이 조회되었습니다.");
 				lib.cls();
 			}else if(input.equals("4")) { //수강 강의 목록 조회
 				lib.cls();
 				student.showMyLectures();
-				System.out.println("수강 강의 목록이 조회되었습니다.");
 				lib.cls();
 			}else if(input.equals("5")) { //전체 강의 목록 조회
 				lib.cls();
 				student.showLectures();
-				System.out.println("전체 강의 목록이 조회되었습니다.");
 				lib.cls();
 			}else if(input.equals("0")) { //이전 화면으로 돌아가기
 				lib.cls();

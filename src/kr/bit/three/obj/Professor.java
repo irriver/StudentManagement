@@ -88,23 +88,24 @@ public class Professor extends PersonalInfo implements Serializable {
 		}
 	}
 	
+	/*
+	 * Template Method(성적 입력,수정,삭제)
+	 * 성적 처리 방식은 다음의 5단계로 이루어진다.
+	 * 1.나의 강의 선택
+	 * 2.나의 강의를 수강하는 학생 조회
+	 * 3.학생 선택
+	 * 4-1.성적 입력
+	 * 4-2.성적 수정
+	 * 4-3.성적 삭제
+	 */
 	
-	// Template Method(성적 입력,수정,삭제)
-	// 성적 처리 방식은 다음의 5단계로 이루어진다.
-	// 1.나의 강의 선택
-	// 2.나의 강의를 수강하는 학생 조회
-	// 3.학생 선택
-	// 4-1.성적 입력
-	// 4-2.성적 수정
-	// 4-3.성적 삭제
-
 	// 1.myLecture 선택
 	private Lecture selectMyLecture() {
 		while(true) {
 			System.out.print("성적 입력을 원하는 강의 코드를 입력하세요(이전 메뉴:0): ");
 			String lecCode = scanner.nextLine();
 			
-			// 일치하는 코드 있을 시 return the lecture;
+			// 일치하는 코드 있을 시 return the lecture
 			if(loadMyLectures().containsKey(lecCode)) {
 				return loadMyLectures().get(lecCode);
 			} else if(lecCode.equals("0")) {
@@ -161,6 +162,7 @@ public class Professor extends PersonalInfo implements Serializable {
 			System.out.println("잘못된 성적을 입력하였습니다.");
 		}
 	}
+	
 	// 4-2. std 성적 수정
 	private void modifyStdGrade(Lecture lecture, Student student) {
 		try {
