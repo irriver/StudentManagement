@@ -329,6 +329,7 @@ public class Admin implements Serializable {
 			students.get(regId).setPhNo(newPhNo);
 
 			modifiedStd = students.get(regId);
+			students.put(regId, modifiedStd);
 
 		} else {
 			System.out.println("입력하신 학번이 잘못 됐습니다.");
@@ -428,6 +429,7 @@ public class Admin implements Serializable {
 			professors.get(regId).setPhNo(newPhNo);
 
 			modifiedProf = professors.get(regId);
+			professors.put(regId, modifiedProf);
 		} else {
 			System.out.println("입력하신 교번이 존재하지 않습니다.");
 			profModify();
@@ -512,6 +514,7 @@ public class Admin implements Serializable {
 			lectures.get(lecCode).setMaxStd(maxStd);
 
 			modifiedLec = lectures.get(lecCode);
+			lectures.put(lecCode, modifiedLec);
 		} else {
 			System.out.println("입력하신 강의코드가 잘못 됐습니다.");
 			lecModify();
